@@ -1,4 +1,6 @@
 export interface IUserWord {
-  difficulty: string;
-  optional: unknown;
+  difficulty: Difficulty;
+  optional?: unknown;
 }
+
+export type Difficulty = 'difficult' | 'default';

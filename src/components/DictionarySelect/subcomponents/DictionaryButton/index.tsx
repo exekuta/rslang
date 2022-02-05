@@ -2,24 +2,24 @@ import React from 'react';
 import { Icon } from 'src/config';
 import { useTypedDispatch, useTypedSelector } from 'src/hooks';
 import { selectGroup, selectTextbook } from 'src/store/reducers/textbook';
-import { DictionaryName } from 'src/types/Dictionary.type';
+import { GroupName } from 'src/types/Dictionary.type';
 import * as S from './style';
 
 interface Props {
-  dictionaryName: DictionaryName;
+  groupName: GroupName;
 }
 
 const DictionaryButton: React.FC<Props> = ({
-  dictionaryName,
+  groupName,
 }) => {
   const dispatch = useTypedDispatch();
   const { group } = useTypedSelector(selectTextbook);
 
-  const isSelected = group === dictionaryName;
+  const isSelected = group === groupName;
 
   const handleClick = () => {
     if (!isSelected) {
-      dispatch(selectGroup(dictionaryName));
+      dispatch(selectGroup(groupName));
     } else {
       console.log('PLAY');
     }
@@ -27,7 +27,7 @@ const DictionaryButton: React.FC<Props> = ({
 
   return (
     <S.Button
-      dictionaryName={dictionaryName}
+      groupName={groupName}
       onClick={handleClick}
       isSelected={isSelected}
     >

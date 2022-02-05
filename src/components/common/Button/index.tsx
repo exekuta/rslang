@@ -42,13 +42,4 @@ const Button: React.FC<Props> = ({
   );
 };
 
-Button.defaultProps = {
-  size: 'medium',
-  variant: 'contained',
-  schema: 'primary',
-  fullWidth: false,
-  isLoading: false,
-  isDisabled: false,
-};
-
 export default Button;

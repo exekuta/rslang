@@ -1,3 +1,5 @@
+import { IUserWord } from './UserWord.type';
+
 export interface IWord {
   id: string;
   group: number;
@@ -13,4 +15,5 @@ export interface IWord {
   wordTranslate: string;
   textMeaningTranslate: string;
   textExampleTranslate: string;
+  userWord?: IUserWord
 }

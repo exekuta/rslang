@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'src/store';
-import { DictionaryName } from 'src/types/Dictionary.type';
+import { DictionaryName, GroupName } from 'src/types/Dictionary.type';
 
 interface TextbookState {
-  group: DictionaryName;
+  group: GroupName;
   page: number;
 }
 
@@ -16,7 +16,7 @@ const textbookSlice = createSlice({
   name: 'textbook',
   initialState,
   reducers: {
-    selectGroup(state, action: PayloadAction<DictionaryName>) {
+    selectGroup(state, action: PayloadAction<GroupName>) {
       state.group = action.payload;
       state.page = 0;
     },

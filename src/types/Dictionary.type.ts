@@ -6,3 +6,9 @@ export enum DictionaryName {
   LEVEL_5,
   LEVEL_6,
 }
+
+export enum AdditionalGroupName {
+  DIFFICULT_WORDS = 'difficultWords'
+}
+
+export type GroupName = DictionaryName | AdditionalGroupName.DIFFICULT_WORDS
