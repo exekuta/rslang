@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'src/config';
 import { useTypedDispatch, useTypedSelector } from 'src/hooks';
-import { selectGroup, selectTextbook } from 'src/store/reducers/textbook';
+import { setGroup, selectTextbook } from 'src/store/reducers/textbook';
 import { GroupName } from 'src/types/Dictionary.type';
 import * as S from './style';
 
@@ -19,7 +19,7 @@ const DictionaryButton: React.FC<Props> = ({
 
   const handleClick = () => {
     if (!isSelected) {
-      dispatch(selectGroup(groupName));
+      dispatch(setGroup(groupName));
     } else {
       console.log('PLAY');
     }

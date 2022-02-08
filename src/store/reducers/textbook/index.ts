@@ -16,7 +16,15 @@ const textbookSlice = createSlice({
   name: 'textbook',
   initialState,
   reducers: {
-    selectGroup(state, action: PayloadAction<GroupName>) {
+    setPagination(state, action: PayloadAction<{
+      group: GroupName,
+      page: number
+    }>) {
+      const { group, page } = action.payload;
+      state.group = group;
+      state.page = page;
+    },
+    setGroup(state, action: PayloadAction<GroupName>) {
       state.group = action.payload;
       state.page = 0;
     },
@@ -28,6 +36,6 @@ const textbookSlice = createSlice({
 
 export default textbookSlice.reducer;
 
-export const { selectGroup, setPage } = textbookSlice.actions;
+export const { setGroup, setPage, setPagination } = textbookSlice.actions;
 
 export const selectTextbook = (state: RootState) => state.textbook;

@@ -29,7 +29,8 @@ const userWordsApi = appApi.injectEndpoints({
           id: _id,
           ...info,
         }));
-        const pagesCount = Math.ceil(response.totalCount[0].count / 20);
+        const wordsCount = response.totalCount[0]?.count;
+        const pagesCount = !wordsCount ? 0 : Math.ceil(wordsCount / 20);
         return {
           pagesCount,
           words,
