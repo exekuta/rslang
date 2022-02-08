@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style';
 
-const MainScreen = () => {
+const MainText = () => {
   return (
     <S.Wrapper>
       <h2>
@@ -13,4 +13,4 @@ const MainScreen = () => {
   );
 };
 
-export default MainScreen;
+export default MainText;
