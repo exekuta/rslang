@@ -5,6 +5,7 @@ import { useAudio, useAuth } from 'src/hooks';
 import { IWord } from 'src/types/schemas';
 import IconButton from '../common/IconButton';
 import * as S from './style';
+import Bookmark from './subcomponents/Bookmark';
 import Example from './subcomponents/Example';
 
 const WordCard: React.FC<IWord> = ({
@@ -17,15 +18,22 @@ const WordCard: React.FC<IWord> = ({
   textMeaningTranslate,
   image,
   audio,
+  group,
+  id,
+  userWord,
 }) => {
   const { isAuthorized } = useAuth();
-  const { play: playAudio } = useAudio(
-    getStaticFilePath(audio),
-  );
+  const { play: playAudio } = useAudio(getStaticFilePath(audio));
 
   return (
     <S.Wrapper>
-      {isAuthorized && <S.Bookmark />}
+      {isAuthorized && (
+        <Bookmark
+          dictionaryName={group}
+          userWord={userWord}
+          id={id}
+        />
+      )}
       <S.Image src={getStaticFilePath(image)} alt={word} />
       <S.Container>
         <div>

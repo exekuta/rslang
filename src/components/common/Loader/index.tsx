@@ -23,10 +23,4 @@ const Loader: React.FC<Props> = ({
   );
 };
 
-Loader.defaultProps = {
-  size: undefined,
-  schema: 'primary',
-  isText: false,
-};
-
 export default Loader;

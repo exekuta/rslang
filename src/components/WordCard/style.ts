@@ -86,22 +86,3 @@ export const Examples = styled.div`
     gap: ${theme.spacing(1)};
   `}
 `;
-
-export const Bookmark = styled.button`
-  ${({ theme }) => css`
-    position: absolute;
-    top: 0;
-    right: 25px;
-    height: 30px;
-    width: 20px;
-    clip-path: polygon(100% 0, 100% 100%, 50% 75%, 0 100%, 0 0);
-    background-color: ${theme.pallets.inactive[300].string()};
-    transition: filter 100ms ease;
-    &:hover {
-      filter: brightness(0.9);
-    }
-    &:active {
-      filter: brightness(0.8);
-    }
-  `}
-`;

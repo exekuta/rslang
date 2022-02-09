@@ -24,9 +24,4 @@ const IconButton: React.FC<Props> = ({
   );
 };
 
-IconButton.defaultProps = {
-  isLoading: false,
-  isDisabled: false,
-};
-
 export default IconButton;

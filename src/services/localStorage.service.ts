@@ -1,12 +1,14 @@
+import { LocalStorageKeys } from 'src/constants/localStorage';
+
 export const localStorageService = {
-  get(key: string) {
+  get(key: LocalStorageKeys) {
     const value = localStorage.getItem(key);
     return value && JSON.parse(value);
   },
-  set(key: string, value: unknown) {
+  set(key: LocalStorageKeys, value: unknown) {
     localStorage.setItem(key, JSON.stringify(value));
   },
-  remove(key: string) {
+  remove(key: LocalStorageKeys) {
     localStorage.removeItem(key);
   },
 };

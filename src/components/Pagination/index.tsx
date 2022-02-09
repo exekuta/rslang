@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React, { SetStateAction, useState } from 'react';
+import React from 'react';
 import { Icon } from 'src/config';
 import { Flex } from '../core';
 import * as S from './style';

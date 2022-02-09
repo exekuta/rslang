@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRegisterMutation } from 'src/services/api/users.api';
 import {
@@ -14,7 +14,6 @@ export const useRegisterForm = () => {
 
   const handleSubmit = useFormReturn.handleSubmit((data) => {
     register(data);
-    useFormReturn.reset();
   });
 
   const errors: IParcedError<IUserRegisterData> | null = useMemo(
@@ -29,6 +28,11 @@ export const useRegisterForm = () => {
   );
 
   const error = (info?.error as IStringApiError)?.data;
+
+  useEffect(() => {
+    if (!info.isSuccess) return;
+    useFormReturn.reset();
+  }, [info.isSuccess, useFormReturn]);
 
   return {
     ...info,

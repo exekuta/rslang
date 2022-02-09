@@ -28,3 +28,11 @@ export const Title = styled.h1<{
       margin-bottom: ${theme.spacing(2)};
     `}
 `;
+
+export const NotFoundMessage = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.pallets.text[600].string()};
+    font-size: 24px;
+    font-weight: 600;
+  `}
+`;

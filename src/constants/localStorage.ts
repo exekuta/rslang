@@ -1,3 +1,4 @@
 export enum LocalStorageKeys {
-  AUTH = 'auth'
+  AUTH = 'auth',
+  TEXTBOOK = 'textbook',
 }

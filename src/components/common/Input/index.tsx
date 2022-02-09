@@ -28,8 +28,4 @@ const Input = forwardRef<HTMLInputElement, Props>(
   },
 );
 
-Input.defaultProps = {
-  error: false,
-};
-
 export default Input;
