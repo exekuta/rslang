@@ -11,20 +11,3 @@ export const Layout = styled.div`
     width: 100%;
   `};
 `;
-
-export const AboutSection = styled.section`
-  ${({ theme }) => css`
-    background-color: ${theme.pallets.primary[500].string()};
-    background-image: url(${bgimg});
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50%;
-  `};
-`;
-
-export const AuthorsSection = styled.section`
-  ${({ theme }) => css`
-    background-color: ${theme.pallets.primary[50].string()};
-    height: 50%;
-  `};
-`;

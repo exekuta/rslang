@@ -9,15 +9,6 @@ const Home = () => {
     <S.Layout>
       <AboutButton />
       <MainText />
-      {/* <S.AboutSection>
-        <MainScreen />
-      </S.AboutSection>
-      <S.AuthorsSection>
-        <h2>Авторы:</h2>
-      </S.AuthorsSection> */}
-      {/* <Page.Page>
-          <Page.Title>Home</Page.Title>
-        </Page.Page> */}
     </S.Layout>
   );
 };

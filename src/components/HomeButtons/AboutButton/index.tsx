@@ -1,31 +1,52 @@
 import React, { useState } from 'react';
 import avatarAndrey from 'src/assets/img/avatar-andrey.jpg';
 import avatarArtem from 'src/assets/img/avatar-artem.svg';
+import githubSign from 'src/assets/img/github-sign.svg';
 import * as S from './style';
 
 const AboutButton = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const toggle = () => setShowModal(!showModal);
 
   return (
     <>
       <S.Button onClick={toggle}>
-        About us
+        Разработчики
       </S.Button>
       <S.ModalContainer showSlide={showModal}>
-        <h2>About us:</h2>
+        <S.Header>
+          Наша команда:
+        </S.Header>
         <S.ModalAbout>
           <div>
             <S.Avatar src={avatarAndrey} />
-            <h2>
-              Andrey
-            </h2>
+            <S.Header>
+              Андрей
+            </S.Header>
+            <a href="https://github.com/exekuta/">
+              <S.GithubSign src={githubSign} alt="github-sign" />
+            </a>
+            <S.List>
+              <li>Team-Lead</li>
+              <li>Главная страница</li>
+              <li>Игра &quot;Аудиовызов&quot;</li>
+              <li>и т.д.</li>
+            </S.List>
           </div>
           <div>
             <S.Avatar src={avatarArtem} />
-            <h2>
-              Artem
-            </h2>
+            <S.Header>
+              Артём
+            </S.Header>
+            <a href="https://github.com/KUSTIKs/">
+              <S.GithubSign src={githubSign} alt="github-sign" />
+            </a>
+            <S.List>
+              <li>Дизайн приложения</li>
+              <li>Авторизация</li>
+              <li>Электронный учебник и список слов</li>
+              <li>и т.д.</li>
+            </S.List>
           </div>
         </S.ModalAbout>
       </S.ModalContainer>

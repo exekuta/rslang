@@ -5,7 +5,7 @@ ${({ theme }) => css`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  height: 90%;
+  height: 80%;
   font-size: 48px;
   color: ${theme.pallets.text[1000].string()};
   text-align: center;
