@@ -10,11 +10,13 @@ const userWordsApi = appApi.injectEndpoints({
       query: () => ({
         url: `users/${getUserId()}/words`,
       }),
+      providesTags: ['USER_WORD'],
     }),
-    getUserWord: builder.query<IUserWord[], Pick<IWord, 'id'>>({
+    getUserWord: builder.query<IUserWord, Pick<IWord, 'id'>>({
       query: ({ id }) => ({
         url: `users/${getUserId()}/words/${id}`,
       }),
+      providesTags: ['USER_WORD'],
     }),
     createUserWord: builder.mutation<IUserWord, IUserWord & { wordId: string }>(
       {
@@ -23,6 +25,7 @@ const userWordsApi = appApi.injectEndpoints({
           method: HttpMethod.POST,
           body: params,
         }),
+        invalidatesTags: ['USER_WORD'],
       },
     ),
     updateUserWord: builder.mutation<IUserWord, IUserWord & { wordId: string }>(
@@ -32,6 +35,7 @@ const userWordsApi = appApi.injectEndpoints({
           method: HttpMethod.PUT,
           body: params,
         }),
+        invalidatesTags: ['USER_WORD'],
       },
     ),
     deleteUserWord: builder.mutation<IUserWord, { wordId: string }>({
@@ -39,6 +43,7 @@ const userWordsApi = appApi.injectEndpoints({
         url: `users/${getUserId()}/words/${wordId}`,
         method: HttpMethod.DELETE,
       }),
+      invalidatesTags: ['USER_WORD'],
     }),
   }),
   overrideExisting: false,
