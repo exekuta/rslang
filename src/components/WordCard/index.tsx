@@ -26,15 +26,15 @@ const WordCard: React.FC<IWord> = ({
   const { play: playAudio } = useAudio(getStaticFilePath(audio));
 
   return (
-    <S.Wrapper>
+    <S.Wrapper dictionaryName={group}>
       {isAuthorized && (
-        <Bookmark
-          dictionaryName={group}
-          userWord={userWord}
-          id={id}
-        />
+        <Bookmark dictionaryName={group} userWord={userWord} id={id} />
       )}
-      <S.Image src={getStaticFilePath(image)} alt={word} />
+      <S.Image
+        src={getStaticFilePath(image)}
+        alt={word}
+        dictionaryName={group}
+      />
       <S.Container>
         <div>
           <S.Heading>

@@ -5,13 +5,13 @@ import { RouteName } from 'src/types/Route.type';
 import { ProtectedElement } from '../ProtectedElement';
 
 const ProtectedRoute: React.FC<{ routeName: RouteName }> = ({ routeName }) => {
-  const { path, access, Element } = routes[routeName];
+  const { path, access, element } = routes[routeName];
   return (
     <Route
       path={path}
       element={(
         <ProtectedElement access={access}>
-          <Element />
+          {element}
         </ProtectedElement>
       )}
     />

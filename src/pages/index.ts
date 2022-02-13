@@ -4,3 +4,6 @@ export { default as LogIn } from './LogIn';
 export { default as Register } from './Register';
 export { default as Statistics } from './Statistics';
 export { default as Textbook } from './Textbook';
+export { default as GameInfo } from './GameInfo';
+export { default as Sprint } from './Sprint';
+export { default as AudioChallenge } from './AudioChallenge';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Page } from 'src/components/core';
-import DictionarySelect from 'src/components/DictionarySelect';
+import DictionarySelect from './subcomponents/DictionarySelect';
 import WordList from './subcomponents/WordList';
 
 const Textbook = () => {

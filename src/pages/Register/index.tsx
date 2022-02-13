@@ -21,16 +21,20 @@ const Register = () => {
             <Input
               label="Name"
               error={errors?.name || !!error}
+              autoComplete="username"
               {...register('name')}
             />
             <Input
               label="Email"
               error={errors?.email || !!error}
+              autoComplete="email"
               {...register('email')}
             />
             <Input
               label="Password"
               error={errors?.password || !!error}
+              type="password"
+              autoComplete="new-password"
               {...register('password')}
             />
           </Flex>

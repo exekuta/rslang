@@ -7,13 +7,17 @@ export enum RouteName {
   LOGIN = 'login',
   REGISTER = 'register',
   STATISTICS = 'statistics',
+  SPRINT_INFO = 'sprintInfo',
+  AUDIO_CHALLENGE_INFO = 'audioChallengeInfo',
+  SPRINT_GAME = 'sprintGame',
+  AUDIO_CHALLENGE_GAME = 'audioChallengeGame',
 }
 
 export interface IRoute {
   path: string;
   fullPath: string;
   access: RouteAccess;
-  Element: () => JSX.Element;
+  element:JSX.Element;
 }
 
 export type Routes = {
@@ -28,7 +32,7 @@ export interface IMenuRoute {
 }
 
 export enum RouteAccess {
-  'NOT_AUTH' = 'notAuth',
-  'AUTH' = 'auth',
-  'ANY' = 'any',
+  NOT_AUTH = 'notAuth',
+  AUTH = 'auth',
+  ANY = 'any',
 }

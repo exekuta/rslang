@@ -11,8 +11,9 @@ export const Flex = styled.div<{
   jcc?: boolean;
   jcs?: boolean;
   jce?: boolean;
+  pic?:boolean;
   column?: boolean;
-  wrap?: boolean;
+  fwrap?: boolean;
 }>`
   ${({ theme, ...props }) => css`
     display: flex;
@@ -36,13 +37,17 @@ export const Flex = styled.div<{
     && css`
       justify-content: ${props.jcc ? 'center' : props.jcs ? 'start' : 'end'};
     `}
+    ${props.pic
+    && css`
+      place-items: center;
+    `}
     ${props.column
     && css`
       flex-direction: column;
     `}
-    ${props.wrap
+    ${props.fwrap
     && css`
-      flex-direction: wrap;
+      flex-wrap: wrap;
     `}
   `}
 `;

@@ -1,16 +1,18 @@
-import React, { HTMLAttributes } from 'react';
+import React, { MouseEventHandler } from 'react';
 import { SchemaNameValue } from 'src/types/Schema.type';
 import Loader from '../Loader';
 import * as S from './style';
 import { Size, Variant } from './types';
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props {
   size?: Size;
   variant?: Variant;
   fullWidth?: boolean;
   schema?: SchemaNameValue;
   isLoading?: boolean;
   isDisabled?: boolean;
+  minWidth?: number;
+  onClick?: MouseEventHandler;
 }
 
 const Button: React.FC<Props> = ({
@@ -19,9 +21,10 @@ const Button: React.FC<Props> = ({
   schema = 'primary',
   isLoading = false,
   isDisabled = false,
+  minWidth,
   fullWidth,
   children,
-  ...attrs
+  onClick,
 }) => {
   return (
     <S.Button
@@ -31,8 +34,9 @@ const Button: React.FC<Props> = ({
       fullWidth={fullWidth}
       isLoading={isLoading}
       isDisabled={isDisabled}
+      minWidth={minWidth}
       disabled={isLoading || isDisabled}
-      {...attrs}
+      onClick={onClick}
     >
       <S.Text>{children}</S.Text>
       <S.Loader>
