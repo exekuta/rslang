@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { SchemaNameValue } from 'src/types/Schema.type';
+import { IMDPallet, SchemaNameValue } from 'src/types/Schema.type';
 import styled, { css } from 'styled-components';
 import { Size, Variant } from './types';
 
@@ -26,11 +26,22 @@ export const Button = styled.button<{
   fullWidth?: boolean;
   isDisabled: boolean;
   isLoading: boolean;
+  minWidth?: number;
 }>`
   ${({
- theme, size, variant, schema, fullWidth, isLoading, isDisabled,
-}) => {
-    const pallet = isDisabled ? theme.pallets.inactive : theme.pallets[schema];
+    theme,
+    size,
+    variant,
+    schema,
+    fullWidth,
+    isLoading,
+    isDisabled,
+    minWidth,
+  }) => {
+    const pallet = isDisabled
+      ? theme.pallets.inactive
+      : (theme.pallets[schema] as IMDPallet);
+
     return css`
       font-weight: 600;
       border-radius: 10px;
@@ -41,11 +52,17 @@ export const Button = styled.button<{
       display: flex;
       justify-content: center;
       align-items: center;
+      height: max-content;
+
+      ${minWidth &&
+      css`
+        min-width: ${minWidth}px;
+      `}
 
       ${size === 'large'
         ? css`
             padding: ${theme.spacing(4)} ${theme.spacing(10)};
-            font-size: 24px;
+            font-size: 22px;
           `
         : size === 'medium'
         ? css`
@@ -68,30 +85,31 @@ export const Button = styled.button<{
                 background-color: ${pallet[700].string()};
               }
               &:focus-visible {
-                box-shadow: 0 0 0 2px ${pallet[600].toString()} inset,
-                  0 0 0 3px ${pallet[500].alpha(0.25).toString()};
+                box-shadow: 0 0 0 2px ${pallet[600].string()} inset,
+                  0 0 0 3px ${pallet[500].alpha(0.25).string()};
               }
             }
           `
         : css`
-            background-color: ${pallet[500].alpha(0.1).toString()};
-            border: 3px solid ${pallet[500].string()};
+            background-color: ${pallet[500].alpha(0.1).string()};
+            outline: 2px solid ${pallet[500].string()};
+            outline-offset: -2px;
             color: ${pallet[700].string()};
             &:not(:disabled) {
               &:hover {
-                background-color: ${pallet[500].alpha(0.25).toString()};
+                background-color: ${pallet[500].alpha(0.25).string()};
               }
               &:active {
-                background-color: ${pallet[500].alpha(0.35).toString()};
+                background-color: ${pallet[500].alpha(0.35).string()};
               }
               &:focus-visible {
-                box-shadow: 0 0 0 3px ${pallet[500].alpha(0.25).toString()};
+                box-shadow: 0 0 0 3px ${pallet[500].alpha(0.25).string()};
               }
             }
           `}
 
-      ${isLoading
-      && css`
+      ${isLoading &&
+      css`
         ${Text} {
           color: transparent;
         }

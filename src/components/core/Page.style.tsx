@@ -8,8 +8,10 @@ export const Page = styled.article<{
     max-width: 1000px;
     width: 100%;
     margin: 0 auto;
-    ${center
-    && css`
+    ${center &&
+    css`
+      height: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -23,8 +25,8 @@ export const Title = styled.h1<{
 }>`
   font-size: 36px;
   font-weight: 700;
-  ${({ isMargin, theme }) => isMargin
-    && css`
+  ${({ isMargin, theme }) => isMargin &&
+    css`
       margin-bottom: ${theme.spacing(2)};
     `}
 `;

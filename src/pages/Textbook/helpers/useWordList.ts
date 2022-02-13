@@ -15,6 +15,7 @@ export const useGetWordList = () => {
     useLazyGetUserAggregatedWordsQuery();
   const [getWords, getWordsReturn] = useLazyGetWordsQuery();
   const query = isAuthorized ? getAggregatedWords : getWords;
+
   useEffect(() => {
     if (group !== AdditionalGroupName.DIFFICULT_WORDS) {
       query({
@@ -28,5 +29,6 @@ export const useGetWordList = () => {
       });
     }
   }, [getAggregatedWords, group, page, query]);
+
   return isAuthorized ? getAggregatedWordsReturn : getWordsReturn;
 };

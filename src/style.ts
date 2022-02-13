@@ -27,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 
     img {
       user-drag: none;
+      user-select: none;
     }
 
     a {

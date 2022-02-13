@@ -1,13 +1,15 @@
 import React, { ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
 import { routes } from 'src/config';
-import { useAuth } from 'src/hooks/useAuth';
+import { useAuth } from 'src/hooks';
 import { RouteAccess } from 'src/types/Route.type';
 
-export const ProtectedElement: React.FC<{
+interface Props {
   access: RouteAccess;
   children: ReactElement;
-}> = ({ access, children }) => {
+}
+
+export const ProtectedElement: React.FC<Props> = ({ access, children }) => {
   const { isAuthorized } = useAuth();
 
   if (isAuthorized && access === RouteAccess.NOT_AUTH) {

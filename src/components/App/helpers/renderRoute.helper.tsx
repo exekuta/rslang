@@ -5,13 +5,14 @@ import { routes } from 'src/config';
 import { RouteName } from 'src/types/Route.type';
 
 export const renderRoute = (routeName: RouteName) => {
-  const { path, access, Element } = routes[routeName];
+  const { path, access, element } = routes[routeName];
+
   return (
     <Route
       path={path}
       element={(
         <ProtectedElement access={access}>
-          <Element />
+          {element}
         </ProtectedElement>
       )}
     />

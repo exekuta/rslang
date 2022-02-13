@@ -18,8 +18,19 @@ const LogIn = () => {
         <Form.Error>{error}</Form.Error>
         <Form.Form onSubmit={handleSubmit}>
           <Flex column gap={2}>
-            <Input label="Email" {...register('email')} error={isError} />
-            <Input label="Password" {...register('password')} error={isError} />
+            <Input
+              label="Email"
+              {...register('email')}
+              error={isError}
+              autoComplete="email"
+            />
+            <Input
+              label="Password"
+              {...register('password')}
+              error={isError}
+              type="password"
+              autoComplete="current-password"
+            />
           </Flex>
           <p>
             Don&apos;t have an account ?
