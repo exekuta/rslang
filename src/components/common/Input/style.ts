@@ -1,4 +1,4 @@
-import { SchemaName } from 'src/types/Schema.type';
+import { IMDPallet, SchemaName } from 'src/types/Schema.type';
 import styled, { css } from 'styled-components';
 
 export const InputBlock = styled.label`
@@ -24,13 +24,13 @@ export const Label = styled.span`
   `}
 `;
 
-export const Input = styled.input.attrs({
-  type: 'text',
-})<{
+export const Input = styled.input<{
   schema: SchemaName.ERROR | SchemaName.PRIMARY;
+  isPaddingRight?: boolean;
 }>`
-  ${({ theme, schema }) => {
-    const pallet = theme.pallets[schema];
+  ${({ theme, schema, isPaddingRight }) => {
+    const pallet = theme.pallets[schema] as IMDPallet;
+
     return css`
       padding: ${theme.spacing(3.5)} ${theme.spacing(5)};
       background-color: ${theme.pallets.inactive[50].string()};
@@ -48,7 +48,7 @@ export const Input = styled.input.attrs({
         color: transparent;
       }
       &:focus-visible {
-        box-shadow: 0 0 0 3px ${pallet[500].alpha(0.2).toString()};
+        box-shadow: 0 0 0 3px ${pallet[500].alpha(0.2).string()};
         border-color: ${pallet[500].string()};
       }
       & + ${Label} {
@@ -62,6 +62,10 @@ export const Input = styled.input.attrs({
         padding: 0;
         color: ${theme.pallets.text[500].string()};
       }
+      ${isPaddingRight &&
+      css`
+        padding-right: 55px;
+      `}
     `;
   }}
 `;
@@ -72,5 +76,27 @@ export const ErrorMessage = styled.span`
     font-weight: 500;
     font-size: 17px;
     color: ${theme.pallets.error[600].string()};
+  `}
+`;
+
+export const EyeButton = styled.button.attrs({
+  type: 'button',
+})`
+  ${({ theme }) => css`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    font-size: 22px;
+    height: 40px;
+    width: 40px;
+    transition: color 200ms ease;
+    color: ${theme.pallets.inactive[400].string()};
+    &:hover {
+      color: ${theme.pallets.inactive[500].string()};
+    }
   `}
 `;

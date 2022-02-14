@@ -18,7 +18,7 @@ const WordList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const maxPage = data ? data.pagesCount - 1 : 0;
+    const maxPage = (data && data.pagesCount > 0) ? data.pagesCount - 1 : 0;
     if (!data || page <= maxPage) return;
     setCurrentPage(maxPage);
   }, [data, page, setCurrentPage]);

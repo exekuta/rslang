@@ -16,10 +16,13 @@ const textbookSlice = createSlice({
   name: 'textbook',
   initialState,
   reducers: {
-    setPagination(state, action: PayloadAction<{
-      group: GroupName,
-      page: number
-    }>) {
+    setPagination(
+      state,
+      action: PayloadAction<{
+        group: GroupName;
+        page: number;
+      }>,
+    ) {
       const { group, page } = action.payload;
       state.group = group;
       state.page = page;

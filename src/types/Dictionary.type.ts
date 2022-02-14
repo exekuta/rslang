@@ -7,8 +7,13 @@ export enum DictionaryName {
   LEVEL_6,
 }
 
+export type DictionaryNameValue = `${DictionaryName}`;
+export const dictionaryNameValues = Object.values(
+  DictionaryName,
+);
+
 export enum AdditionalGroupName {
-  DIFFICULT_WORDS = 'difficultWords'
+  DIFFICULT_WORDS = 'difficultWords',
 }
 
-export type GroupName = DictionaryName | AdditionalGroupName.DIFFICULT_WORDS
+export type GroupName = DictionaryName | AdditionalGroupName.DIFFICULT_WORDS;

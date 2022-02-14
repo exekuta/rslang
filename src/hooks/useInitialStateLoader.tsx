@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { LocalStorageKeys } from 'src/constants/localStorage';
 import { useTypedDispatch, useTypedSelector } from 'src/hooks';
 import { localStorageService } from 'src/services/localStorage.service';
 import { login, selectAuth } from 'src/store/reducers/auth';
 import { selectTextbook, setPagination } from 'src/store/reducers/textbook';
 
-const InitialStateLoader = () => {
+export const useInitialStateLoader = () => {
   const dispatch = useTypedDispatch();
   const { auth } = useTypedSelector(selectAuth);
   const textbookData = useTypedSelector(selectTextbook);
@@ -34,8 +34,4 @@ const InitialStateLoader = () => {
       page: textbookData.page,
     });
   }, [auth, textbookData.group, textbookData.page]);
-
-  return null;
 };
-
-export default InitialStateLoader;

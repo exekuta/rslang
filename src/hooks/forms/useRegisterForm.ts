@@ -1,5 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { routes } from 'src/config';
 import { useRegisterMutation } from 'src/services/api/users.api';
 import {
   IParcedError,
@@ -11,6 +13,7 @@ import {
 export const useRegisterForm = () => {
   const [register, info] = useRegisterMutation();
   const useFormReturn = useForm<IUserRegisterData>();
+  const navigate = useNavigate();
 
   const handleSubmit = useFormReturn.handleSubmit((data) => {
     register(data);
@@ -32,7 +35,8 @@ export const useRegisterForm = () => {
   useEffect(() => {
     if (!info.isSuccess) return;
     useFormReturn.reset();
-  }, [info.isSuccess, useFormReturn]);
+    navigate(routes.login.fullPath);
+  }, [info.isSuccess, navigate, useFormReturn]);
 
   return {
     ...info,

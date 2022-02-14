@@ -8,6 +8,7 @@ export const Menu = styled.nav`
     gap: ${theme.spacing(10)};
     align-content: space-between;
     background-color: white;
+    grid-row: 1 / 3;
   `};
 `;
 
