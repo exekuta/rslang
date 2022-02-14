@@ -1,56 +1,17 @@
-import React, { useState } from 'react';
-import avatarAndrey from 'src/assets/img/avatar-andrey.jpg';
-import avatarArtem from 'src/assets/img/avatar-artem.svg';
-import githubSign from 'src/assets/img/github-sign.svg';
+import React, { Dispatch, SetStateAction } from 'react';
 import * as S from './style';
 
-const AboutButton = () => {
-  const [showModal, setShowModal] = useState(true);
-  const toggle = () => setShowModal(!showModal);
+interface Props {
+  setShowFeatures: Dispatch<SetStateAction<boolean>>
+}
+
+const AboutButton:React.FC<Props> = ({ setShowFeatures }) => {
+  const toggleFeatures = () => setShowFeatures((showFeatures) => !showFeatures);
 
   return (
-    <>
-      <S.Button onClick={toggle}>
-        Разработчики
-      </S.Button>
-      <S.ModalContainer showSlide={showModal}>
-        <S.Header>
-          Наша команда:
-        </S.Header>
-        <S.ModalAbout>
-          <div>
-            <S.Avatar src={avatarAndrey} />
-            <S.Header>
-              Андрей
-            </S.Header>
-            <a href="https://github.com/exekuta/">
-              <S.GithubSign src={githubSign} alt="github-sign" />
-            </a>
-            <S.List>
-              <li>Team-Lead</li>
-              <li>Главная страница</li>
-              <li>Игра &quot;Аудиовызов&quot;</li>
-              <li>и т.д.</li>
-            </S.List>
-          </div>
-          <div>
-            <S.Avatar src={avatarArtem} />
-            <S.Header>
-              Артём
-            </S.Header>
-            <a href="https://github.com/KUSTIKs/">
-              <S.GithubSign src={githubSign} alt="github-sign" />
-            </a>
-            <S.List>
-              <li>Дизайн приложения</li>
-              <li>Авторизация</li>
-              <li>Электронный учебник и список слов</li>
-              <li>и т.д.</li>
-            </S.List>
-          </div>
-        </S.ModalAbout>
-      </S.ModalContainer>
-    </>
+    <S.Button onClick={toggleFeatures}>
+      Преимущества
+    </S.Button>
   );
 };
 
