@@ -10,8 +10,8 @@ const MainLayout = () => {
       <NavMenu />
       <S.Container>
         <Outlet />
+        <Footer />
       </S.Container>
-      <Footer />
     </S.Layout>
   );
 };

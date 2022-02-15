@@ -40,6 +40,8 @@ const GameInfo: React.FC<Props> = ({ gameName }) => {
     });
   };
 
+  console.log(selectedDictionary);
+
   return (
     <Page.Page center>
       <Flex column gap={12} aic>

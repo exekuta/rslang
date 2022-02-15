@@ -1,32 +1,22 @@
 import React from 'react';
-import githubSign from 'src/assets/img/github-sign.svg';
-import RSSchool from 'src/assets/img/rs-school.svg';
+import { RsSchoolLogoComponent } from 'src/assets/img';
+import { Flex } from '../core';
 import * as S from './style';
+import GitHubLink from './subcomponents/GitHubLink';
 
 const Footer = () => {
   return (
     <S.Container>
-      {/* <S.Flex> */}
-      <div>
-        <a href="https://rs.school/js/">
-          <S.GithubSign src={RSSchool} alt="RSSchool" />
-        </a>
-      </div>
-      <div>
-        <S.GithubContainer>
-          <S.GithubSign src={githubSign} alt="github-sign" />
-          <a href="https://github.com/exekuta/">
-            <h2>Андрей</h2>
-          </a>
-          <a href="https://github.com/KUSTIKs/">
-            <h2>Артём</h2>
-          </a>
-        </S.GithubContainer>
-      </div>
-      <div>
-        <h2>&copy; 2022</h2>
-      </div>
-      {/* </S.Flex> */}
+      <S.RsSchoolLink href="https://rs.school/js/">
+        <RsSchoolLogoComponent />
+      </S.RsSchoolLink>
+      <Flex gap={4} aic>
+        <Flex gap={3} aic>
+          <GitHubLink link="https://github.com/exekuta" username="Андрей" />
+          <GitHubLink link="https://github.com/KUSTIKs/" username="Артём" />
+        </Flex>
+        <S.CopyText>&copy; 2022</S.CopyText>
+      </Flex>
     </S.Container>
   );
 };

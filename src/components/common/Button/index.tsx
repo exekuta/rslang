@@ -5,38 +5,41 @@ import * as S from './style';
 import { Size, Variant } from './types';
 
 interface Props {
-  size?: Size;
-  variant?: Variant;
   fullWidth?: boolean;
-  schema?: SchemaNameValue;
-  isLoading?: boolean;
   isDisabled?: boolean;
+  isLoading?: boolean;
+  maxWidth?: number;
   minWidth?: number;
   onClick?: MouseEventHandler;
+  schema?: SchemaNameValue;
+  size?: Size;
+  variant?: Variant;
 }
 
 const Button: React.FC<Props> = ({
+  children,
+  fullWidth = false,
+  isDisabled = false,
+  isLoading = false,
+  maxWidth,
+  minWidth,
+  onClick,
+  schema = 'primary',
   size = 'medium',
   variant = 'contained',
-  schema = 'primary',
-  isLoading = false,
-  isDisabled = false,
-  minWidth,
-  fullWidth,
-  children,
-  onClick,
 }) => {
   return (
     <S.Button
+      disabled={isLoading || isDisabled}
+      fullWidth={fullWidth}
+      isDisabled={isDisabled}
+      isLoading={isLoading}
+      minWidth={minWidth}
+      maxWidth={maxWidth}
+      onClick={onClick}
+      schema={schema}
       size={size}
       variant={variant}
-      schema={schema}
-      fullWidth={fullWidth}
-      isLoading={isLoading}
-      isDisabled={isDisabled}
-      minWidth={minWidth}
-      disabled={isLoading || isDisabled}
-      onClick={onClick}
     >
       <S.Text>{children}</S.Text>
       <S.Loader>

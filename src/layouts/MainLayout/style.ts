@@ -1,3 +1,4 @@
+import { Container as Footer } from 'src/components/Footer/style';
 import styled from 'styled-components';
 
 export const Layout = styled.div`
@@ -8,4 +9,10 @@ export const Layout = styled.div`
 
 export const Container = styled.main`
   overflow: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  > ${Footer} {
+    margin-top: auto;
+  }
 `;

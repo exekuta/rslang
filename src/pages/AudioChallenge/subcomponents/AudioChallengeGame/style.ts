@@ -23,3 +23,9 @@ export const AudioButton = styled.button`
     }
   `}
 `;
+
+export const TitleCenter = styled.h2`
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+`;

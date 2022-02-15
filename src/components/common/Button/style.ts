@@ -23,10 +23,11 @@ export const Button = styled.button<{
   size: Size;
   variant: Variant;
   schema: SchemaNameValue;
-  fullWidth?: boolean;
+  fullWidth: boolean;
   isDisabled: boolean;
   isLoading: boolean;
   minWidth?: number;
+  maxWidth?: number;
 }>`
   ${({
     theme,
@@ -37,6 +38,7 @@ export const Button = styled.button<{
     isLoading,
     isDisabled,
     minWidth,
+    maxWidth,
   }) => {
     const pallet = isDisabled
       ? theme.pallets.inactive
@@ -56,7 +58,12 @@ export const Button = styled.button<{
 
       ${minWidth &&
       css`
-        min-width: ${minWidth}px;
+        min-width: min(${minWidth}px, 100%);
+      `}
+
+      ${maxWidth &&
+      css`
+        max-width: ${maxWidth}px;
       `}
 
       ${size === 'large'
