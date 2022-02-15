@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Flex } from 'src/components/core';
 import { useAuth, useTypedDispatch, useTypedSelector } from 'src/hooks';
 import { useSelect } from 'src/hooks/useSelect';
 import { selectTextbook, setGroup } from 'src/store/reducers/textbook';
@@ -9,6 +8,7 @@ import {
   GroupName,
 } from 'src/types/Dictionary.type';
 import DictionaryButton from '../DictionaryButton';
+import * as S from './style';
 
 const DictionarySelect = () => {
   const dispatch = useTypedDispatch();
@@ -34,7 +34,7 @@ const DictionarySelect = () => {
   }, [group, selectElement]);
 
   return (
-    <Flex gap={2}>
+    <S.Wrapper>
       <DictionaryButton
         groupName={DictionaryName.LEVEL_1}
         {...register(DictionaryName.LEVEL_1)}
@@ -65,7 +65,7 @@ const DictionarySelect = () => {
           {...register(AdditionalGroupName.DIFFICULT_WORDS)}
         />
       )}
-    </Flex>
+    </S.Wrapper>
   );
 };
 

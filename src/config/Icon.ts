@@ -12,10 +12,11 @@ import {
 } from 'react-icons/bi';
 import {
   RiBookMarkLine,
+  RiCheckFill,
   RiCloseLine,
   RiEyeCloseLine,
   RiEyeLine,
-  RiStopFill,
+  RiGithubFill, RiStopFill,
   RiStopLine,
 } from 'react-icons/ri';
 
@@ -36,4 +37,6 @@ export const Icon = {
   Eye: RiEyeLine,
   EyeClose: RiEyeCloseLine,
   Close: RiCloseLine,
+  Github: RiGithubFill,
+  Check: RiCheckFill,
 } as const;

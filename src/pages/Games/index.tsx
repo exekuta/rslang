@@ -19,7 +19,7 @@ const Games = () => {
     <Page.Page center>
       <Flex column gap={6} aic>
         <Page.Title>Select a game</Page.Title>
-        <Flex gap={4}>
+        <Flex gap={4} fwrap jcc>
           <GameCard
             title="Audio challenge"
             image={giraffeImg}
