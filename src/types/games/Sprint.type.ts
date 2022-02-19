@@ -1,7 +1,16 @@
 export interface IGuessedWord {
   word: string;
   translation: string;
+  correctTranslation: string;
   isCorrect: boolean;
+}
+
+export interface ISprintRoundResult {
+  word: string;
+  translation: string;
+  correctTranslation: string;
+  isGuessed: boolean;
+  score: number;
 }
 
 export enum RoundResult {
@@ -11,6 +20,13 @@ export enum RoundResult {
 }
 
 export enum GameState {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  INACTIVE = 'inactive',
+  PLAYING = 'playing',
+  ENDED = 'ended',
+}
+
+export enum SprintScreen {
+  GAME = 'game',
+  END = 'end',
+  DETAILS = 'details',
 }

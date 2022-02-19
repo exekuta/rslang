@@ -1,35 +1,46 @@
-import { useMemo } from 'react';
-import { PAGES_COUNT } from 'src/constants/dictionary';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { MAX_ROUNDS_AMOUNT } from 'src/constants/games/sprint';
 import { random } from 'src/helpers';
-import { useGetWordsQuery } from 'src/services/api/words.api';
+import { getAllDictionaryWords } from 'src/services/axios/words';
 import { DictionaryName } from 'src/types/Dictionary.type';
 import { IGuessedWord } from 'src/types/games/Sprint.type';
+import { IWord } from 'src/types/schemas';
 
 interface UseGuessedWordsParams {
   dictionaryName: DictionaryName;
 }
 
 export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
-  const page = useMemo(() => random.range({ max: PAGES_COUNT }), []);
+  const [words, setWords] = useState<IWord[] | null>(null);
 
-  const { data } = useGetWordsQuery({ group: dictionaryName, page });
+  const loadWords = useCallback(async () => {
+    const newWords = await getAllDictionaryWords({
+      dictionaryName,
+    });
+    setWords(newWords);
+  }, [dictionaryName]);
+
+  useEffect(() => {
+    loadWords();
+  }, [loadWords]);
 
   const correctWords = useMemo(
-    () => (!data
+    () => (!words
       ? null
       : random.sample({
-        arr: data.words,
+        arr: words,
         amount: MAX_ROUNDS_AMOUNT,
       })),
-    [data],
+    [words],
   );
 
   const guessedWords = useMemo<IGuessedWord[] | null>(
-    () => (!correctWords || !data
+    () => (!correctWords || !words
       ? null
       : correctWords.map((correctWord) => {
-        const potentiallyIncorrectWords = data.words.filter(
+        const potentiallyIncorrectWords = words.filter(
           (word) => word !== correctWord,
         );
 
@@ -39,7 +50,7 @@ export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
 
         const isCorrect = random.bool();
 
-        const { word } = correctWord;
+        const { word, wordTranslate } = correctWord;
 
         const translation = (isCorrect ? correctWord : incorrectWord)
           .wordTranslate;
@@ -47,10 +58,11 @@ export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
         return {
           word,
           translation,
+          correctTranslation: wordTranslate,
           isCorrect,
         };
       })),
-    [correctWords, data],
+    [correctWords, words],
   );
 
   return guessedWords;

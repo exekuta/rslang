@@ -20,7 +20,7 @@ const AudioChallenge = () => {
     dictionaryName: DictionaryNameValue;
   }>();
 
-  if (isDictionaryNameValue(dictionaryName)) {
+  if (!isDictionaryNameValue(dictionaryName)) {
     return (
       <Page.Page center>
         <Page.NotFoundMessage>No such dictionary</Page.NotFoundMessage>

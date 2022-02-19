@@ -1,4 +1,12 @@
+import { GameResult } from '../games/common';
+
+export interface IStatisticsOptional {
+  score?: number;
+  gameResults?: ArrayLike<GameResult>;
+}
+
 export interface IStatistics {
-  learnedWords: number;
-  optional: unknown;
+  id?: string;
+  learnedWords?: number;
+  optional?: IStatisticsOptional;
 }

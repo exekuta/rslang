@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable no-nested-ternary */
 import styled, { css } from 'styled-components';
 
@@ -10,43 +11,50 @@ export const Flex = styled.div<{
   aie?: boolean;
   jcc?: boolean;
   jcs?: boolean;
+  jcsb?: boolean;
   jce?: boolean;
-  pic?:boolean;
+  pic?: boolean;
   column?: boolean;
   fwrap?: boolean;
 }>`
   ${({ theme, ...props }) => css`
     display: flex;
-    ${props.gap
-    && css`
+    ${props.gap &&
+    css`
       gap: ${theme.spacing(props.gap)};
     `}
-    ${props.rgap
-    && css`
+    ${props.rgap &&
+    css`
       row-gap: ${theme.spacing(props.rgap)};
     `}
-    ${props.cgap
-    && css`
+    ${props.cgap &&
+    css`
       column-gap: ${theme.spacing(props.cgap)};
     `}
-    ${(props.aic || props.ais || props.aie)
-    && css`
+    ${(props.aic || props.ais || props.aie) &&
+    css`
       align-items: ${props.aic ? 'center' : props.aic ? 'start' : 'end'};
     `}
-    ${(props.jcc || props.jcs || props.jce)
-    && css`
-      justify-content: ${props.jcc ? 'center' : props.jcs ? 'start' : 'end'};
+    ${(props.jcc || props.jcs || props.jce || props.jcsb) &&
+    css`
+      justify-content: ${props.jcc
+        ? 'center'
+        : props.jcs
+        ? 'start'
+        : props.jce
+        ? 'end'
+        : 'space-between'};
     `}
-    ${props.pic
-    && css`
+    ${props.pic &&
+    css`
       place-items: center;
     `}
-    ${props.column
-    && css`
+    ${props.column &&
+    css`
       flex-direction: column;
     `}
-    ${props.fwrap
-    && css`
+    ${props.fwrap &&
+    css`
       flex-wrap: wrap;
     `}
   `}
