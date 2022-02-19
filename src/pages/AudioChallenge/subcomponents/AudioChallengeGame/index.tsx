@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'src/components/common';
@@ -36,6 +35,7 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
     isIncorrect,
     isPlaying,
     handleSkip,
+    handlePlayAudio,
   } = useAudioChallenge({ dictionaryName });
 
   const handleClick = () => {
@@ -68,7 +68,7 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
       </Game.Container>
       <Game.Container isMain center>
         <Flex column gap={4} pic>
-          <S.AudioButton>
+          <S.AudioButton onClick={handlePlayAudio}>
             <Icon.VolumeFull />
           </S.AudioButton>
 

@@ -1,18 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { ROUNDS_AMOUNT } from 'src/constants/games/audioChallenge';
 import { DictionaryName } from 'src/types/Dictionary.type';
 import { GameState, IRoundResult } from 'src/types/games/AudioChallenge.type';
+import correct from 'src/assets/audio/game/correct.mp3';
+import incorrect from 'src/assets/audio/game/incorrect.mp3';
 import { useGuessedWords } from './useGuessedWords';
 
 interface useAudioChallengeParams {
   dictionaryName: DictionaryName;
-}
-
-interface IResultRecord {
-  word: string;
-  translation: string;
-  isGuessed: boolean;
-  scoreAdded: number;
 }
 
 export const useAudioChallenge = ({
@@ -34,6 +31,16 @@ export const useAudioChallenge = ({
     [roundNumber, guessedWords],
   );
 
+  const playAudio = useCallback(() => {
+    if (!currentWord) return;
+    const currentAudio = new Audio(currentWord.audio);
+    currentAudio.play();
+  }, [currentWord]);
+
+  const handlePlayAudio = () => {
+    playAudio();
+  };
+
   const handleAnswer = (selectedOption: string) => {
     if (!currentWord) return;
     const isCorrectOption = selectedOption === currentWord.answer;
@@ -41,8 +48,12 @@ export const useAudioChallenge = ({
     const newGameState = isCorrectOption
       ? GameState.CORRECT
       : GameState.INCORRECT;
-
     setGameState(newGameState);
+
+    const audioResultPlay =
+      newGameState === GameState.CORRECT
+        ? new Audio(correct).play()
+        : new Audio(incorrect).play();
 
     setRoundResults((state) => state.concat({
       audio: currentWord.answer,
@@ -73,6 +84,10 @@ export const useAudioChallenge = ({
     });
   }, [currentWord]);
 
+  useEffect(() => {
+    playAudio();
+  }, [playAudio]);
+
   return {
     currentWord,
     handleAnswer,
@@ -83,6 +98,8 @@ export const useAudioChallenge = ({
     isActive,
     isPlaying,
     handleSkip,
+    handlePlayAudio,
+    handleAudio: playAudio,
     roundsAmount: ROUNDS_AMOUNT,
   };
 };
