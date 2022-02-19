@@ -4,6 +4,8 @@ import { Button } from 'src/components/common';
 import { Game } from 'src/components/core';
 import GameProgress from 'src/components/GameProgress';
 import { formatTime } from 'src/helpers';
+import GameDetails from 'src/pages/GameDetails';
+import GameEndScreen from 'src/pages/GameEndScreen';
 import { DictionaryName } from 'src/types/Dictionary.type';
 import { useSprint } from '../../helpers/useSprint';
 import DetailsBar from '../DetailsBar';
@@ -27,6 +29,10 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
     score,
     timeLeft,
     timeTotal,
+    gameResult,
+    isGameScreen,
+    isEndScreen,
+    openDetails,
   } = useSprint({
     dictionaryName,
   });
@@ -35,7 +41,7 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
     navigate(-1);
   };
 
-  return (
+  return isGameScreen || !gameResult ? (
     <Game.Page>
       <Game.Container>
         <GameProgress
@@ -66,6 +72,10 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
         </S.Buttons>
       </S.Container>
     </Game.Page>
+  ) : isEndScreen ? (
+    <GameEndScreen openDetails={openDetails} {...gameResult} />
+  ) : (
+    <GameDetails {...gameResult} />
   );
 };
 

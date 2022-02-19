@@ -2,8 +2,8 @@
 import styled, { css } from 'styled-components';
 
 export const Footer = styled.footer<{
-  isCorrect: boolean;
-  isIncorrect: boolean;
+  isCorrect?: boolean;
+  isIncorrect?: boolean;
 }>`
   ${({ theme, isCorrect, isIncorrect }) => {
     const pallete = isCorrect

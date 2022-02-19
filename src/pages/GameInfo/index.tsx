@@ -17,7 +17,9 @@ interface Props {
 const GameInfo: React.FC<Props> = ({ gameName }) => {
   const navigate = useNavigate();
 
-  const { description, image, title } = data[gameName];
+  const {
+    description, image, title, howtocontrol,
+  } = data[gameName];
   const {
     register,
     selectedElement: selectedDictionary,
@@ -40,8 +42,6 @@ const GameInfo: React.FC<Props> = ({ gameName }) => {
     });
   };
 
-  console.log(selectedDictionary);
-
   return (
     <Page.Page center>
       <Flex column gap={12} aic>
@@ -50,6 +50,7 @@ const GameInfo: React.FC<Props> = ({ gameName }) => {
           <S.InfoPart>
             <S.Title>{title}</S.Title>
             <S.Description>{description}</S.Description>
+            <S.HelperText>{howtocontrol}</S.HelperText>
           </S.InfoPart>
           <Flex gap={2} fwrap jcc>
             <DictionaryButton

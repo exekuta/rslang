@@ -1,3 +1,4 @@
+import { PAGES_COUNT } from 'src/constants/dictionary';
 import { objectToUrlParams } from 'src/helpers';
 import { IWordsQueryData } from 'src/types/api/Word.types';
 import { IWordList } from 'src/types/api/WordList.type';
@@ -11,7 +12,7 @@ const wordsApi = appApi.injectEndpoints({
         url: `words?${objectToUrlParams(params)}`,
       }),
       transformResponse: (returnValue: IWord[]) => ({
-        pagesCount: 30,
+        pagesCount: PAGES_COUNT,
         words: returnValue,
       }),
       providesTags: ['WORD'],

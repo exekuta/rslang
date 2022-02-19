@@ -18,6 +18,8 @@ export const useAudio = (url: string) => {
   }, [audio]);
 
   const play = useCallback(() => {
+    audio.currentTime = 0;
+    audio.pause();
     audio.play();
   }, [audio]);
 

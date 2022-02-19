@@ -3,8 +3,8 @@ import { Game } from '../core';
 import * as S from './style';
 
 interface Props {
-  isCorrect: boolean;
-  isIncorrect: boolean;
+  isCorrect?: boolean;
+  isIncorrect?: boolean;
 }
 
 const GameFooter: React.FC<Props> = ({ isCorrect, isIncorrect, children }) => {

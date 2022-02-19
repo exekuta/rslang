@@ -7,6 +7,8 @@ import GameOption from 'src/components/GameOption';
 import GameProgress from 'src/components/GameProgress';
 import { Icon } from 'src/config';
 import { useSelect } from 'src/hooks/useSelect';
+import GameDetails from 'src/pages/GameDetails';
+import GameEndScreen from 'src/pages/GameEndScreen';
 import { DictionaryName } from 'src/types/Dictionary.type';
 import { useAudioChallenge } from '../../helpers/useAudioChallenge';
 import ResultMessage from '../ResultMessage';
@@ -36,6 +38,13 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
     isPlaying,
     handleSkip,
     handlePlayAudio,
+    gameResult,
+    isEndScreen,
+    isGameScreen,
+    openDetails,
+    correctAnswer,
+    lastSelectedWord,
+    isActive,
   } = useAudioChallenge({ dictionaryName });
 
   const handleClick = () => {
@@ -51,7 +60,7 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
     navigate(-1);
   };
 
-  return (
+  return isGameScreen || !gameResult ? (
     <Game.Page>
       <Game.Container>
         <GameProgress
@@ -59,30 +68,34 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
           onClose={goBack}
           details={`${roundNumber}/${roundsAmount}`}
         />
-        <S.TitleCenter>Audio Challenge Game</S.TitleCenter>
-        <S.TitleCenter>
-          Diffuculty level:
-          {' '}
-          {dictionaryName}
-        </S.TitleCenter>
       </Game.Container>
       <Game.Container isMain center>
         <Flex column gap={4} pic>
           <S.AudioButton onClick={handlePlayAudio}>
             <Icon.VolumeFull />
           </S.AudioButton>
-
-          <Flex fwrap gap={2} jcc>
+          <S.OptionsWrapper>
             {currentWord &&
-              currentWord.options.map((word, idx) => (
-                <GameOption
-                  key={String(idx)}
-                  kbd={idx + 1}
-                  title={word}
-                  {...register(word)}
-                />
-              ))}
-          </Flex>
+              currentWord.options.map((word, idx) => {
+                const isCorrectWord =
+                  isActive && !isPlaying && word === correctAnswer;
+                const isIncorrectWord =
+                  isIncorrect && word === lastSelectedWord;
+                const registerWord = isPlaying ? register(word) : {};
+
+                return (
+                  <GameOption
+                    key={String(idx)}
+                    kbd={idx + 1}
+                    title={word}
+                    isHoverable={isPlaying}
+                    isCorrect={isCorrectWord}
+                    isIncorrect={isIncorrectWord}
+                    {...registerWord}
+                  />
+                );
+              })}
+          </S.OptionsWrapper>
         </Flex>
       </Game.Container>
       <GameFooter isCorrect={isCorrect} isIncorrect={isIncorrect}>
@@ -111,6 +124,10 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
         </Button>
       </GameFooter>
     </Game.Page>
+  ) : isEndScreen ? (
+    <GameEndScreen openDetails={openDetails} {...gameResult} />
+  ) : (
+    <GameDetails {...gameResult} />
   );
 };
 

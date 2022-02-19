@@ -1,14 +1,14 @@
 export interface IGuessedWord {
   audio: string;
-  answer: string; // 1
-  options: string[]; // 1, 2, 3
+  answer: string;
+  options: string[];
 }
 
-export interface IRoundResult {
+export interface IAudioChallengeRoundResult {
   audio: string;
-  selectedOption: string;
   answer: string;
-  isCorrect: boolean;
+  correctAnswer: string;
+  isGuessed: boolean;
   score: number;
 }
 
@@ -24,4 +24,10 @@ export enum GameState {
   INACTIVE = 'inactive',
   PLAYING = 'playing',
   ENDED = 'ended',
+}
+
+export enum AudioChallengeScreen {
+  GAME = 'game',
+  END = 'end',
+  DETAILS = 'details',
 }
