@@ -19,13 +19,19 @@ const GameDetails: React.FC<GameResult> = ({ rounds }) => {
       <Game.Container isMain>
         <Page.Title isMargin>Game Details</Page.Title>
         <S.CardsWrapper>
-          {rounds.map((roundData) => (
-            <ResultCard key={roundData.word} {...roundData} />
-          ))}
+          {rounds.length > 0 ? (
+            rounds.map((roundData) => (
+              <ResultCard key={roundData.word} {...roundData} />
+            ))
+          ) : (
+            <Page.NotFoundMessage>No rounds played</Page.NotFoundMessage>
+          )}
         </S.CardsWrapper>
       </Game.Container>
       <GameFooter>
-        <Button maxWidth={200} fullWidth onClick={goToGames}>End</Button>
+        <Button maxWidth={200} fullWidth onClick={goToGames}>
+          End
+        </Button>
       </GameFooter>
     </Game.Page>
   );

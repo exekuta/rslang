@@ -43,6 +43,6 @@ export const useRegisterForm = () => {
     ...useFormReturn,
     handleSubmit,
     errors,
-    error: typeof error === 'string' ? error : info.error,
+    error: typeof error === 'string' && error,
   };
 };

@@ -12,6 +12,7 @@ export const Container = styled.div<{
     ${isMain &&
     css`
       flex-grow: 1;
+      overflow: auto;
     `}
     ${center &&
     css`
@@ -24,7 +25,7 @@ export const Container = styled.div<{
 `;
 
 export const Page = styled.article`
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `;
