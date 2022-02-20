@@ -58,6 +58,7 @@ export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
 
         return {
           word,
+          wordId: correctWord.id,
           translation,
           correctTranslation: wordTranslate,
           isCorrect,

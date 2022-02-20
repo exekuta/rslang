@@ -2,6 +2,8 @@ export interface IGuessedWord {
   audio: string;
   answer: string;
   options: string[];
+  isLearned: boolean;
+  isPlayed: boolean;
 }
 
 export interface IAudioChallengeRoundResult {

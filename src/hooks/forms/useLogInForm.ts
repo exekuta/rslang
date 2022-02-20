@@ -32,6 +32,6 @@ export const useLogInForm = () => {
     ...info,
     ...useFormReturn,
     handleSubmit,
-    error,
+    error: typeof error === 'string' && error,
   };
 };

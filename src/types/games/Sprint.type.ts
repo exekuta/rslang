@@ -1,5 +1,6 @@
 export interface IGuessedWord {
   word: string;
+  wordId: string;
   translation: string;
   correctTranslation: string;
   isCorrect: boolean;

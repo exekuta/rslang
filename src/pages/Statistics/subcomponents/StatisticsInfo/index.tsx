@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Flex } from 'src/components/core';
 import {
   Chart as ChartJS,
@@ -11,6 +11,8 @@ import {
   Tooltip,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
+import { useLazyGetStatisticsQuery } from 'src/services/api/statistics.api';
+import { useAuth } from 'src/hooks';
 import * as S from './style';
 
 ChartJS.register(
@@ -23,73 +25,102 @@ ChartJS.register(
   Tooltip,
 );
 
+const options = {
+  scales: {
+    x: {
+      ticks: {
+        font: {
+          family: 'Gilroy',
+          size: 14,
+        },
+      },
+    },
+    y: {
+      ticks: {
+        font: {
+          family: 'Gilroy',
+          size: 14,
+        },
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      labels: {
+        font: {
+          family: 'Gilroy',
+          size: 16,
+        },
+      },
+    },
+  },
+};
+
 const StatisticsInfo = () => {
-  const options = {
-    scales: {
-      x: {
-        ticks: {
-          font: {
-            family: 'Gilroy',
-            size: 14,
-          },
-        },
-      },
-      y: {
-        ticks: {
-          font: {
-            family: 'Gilroy',
-            size: 14,
-          },
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        labels: {
-          font: {
-            family: 'Gilroy',
-            size: 16,
-          },
-        },
-      },
-    },
-  };
+  const { auth } = useAuth();
+  const [getStatistics, { data }] = useLazyGetStatisticsQuery();
 
-  const labels = [
-    'Date -4',
-    'Date -3',
-    'Date -2',
-    'Date -1',
-    'Today',
-    '',
-  ];
+  useEffect(() => {
+    if (!auth) return;
+    getStatistics({ userId: auth.userId });
+  }, [auth, getStatistics]);
 
-  const data = {
+  type T = {
+    date: string;
+      learnedWords: number;
+      newWords: number;
+      accuracy: number;
+  }
+
+  const gameResults = Array.from(data?.optional?.gameResults || [])
+    .sort((r1, r2) => r1.timestamp - r2.timestamp)
+    .reduce(
+      (acc, {
+        accuracy, learnedWords, newWords, timestamp,
+      }) => {
+        const date = new Date(timestamp).toLocaleString('us', {
+          day: 'numeric',
+          month: 'short',
+        });
+        const created = acc.find((r) => r.date === date);
+        if (created) {
+          created.accuracy += accuracy;
+          created.learnedWords += learnedWords;
+          created.newWords += newWords;
+        }
+        return created ? acc : acc.concat({
+          date,
+          accuracy,
+          learnedWords,
+          newWords,
+        });
+      },
+    [] as T[],
+    );
+
+  const labels = gameResults.map(({ date }) => date);
+
+  const chartData = data && {
     labels,
     datasets: [
       {
         type: 'bar' as const,
         label: 'Words learned',
-        data: [15, 19, 20, 10, 16],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-        ],
-        borderColor: [
-          'rgb(255, 99, 132)',
-        ],
+        data: gameResults.map(
+          ({ learnedWords }) => learnedWords,
+        ),
+        backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+        borderColor: ['rgb(255, 99, 132)'],
         borderWidth: 1,
       },
       {
         type: 'bar' as const,
         label: 'New words',
-        data: [65, 59, 80, 5, 56],
-        backgroundColor: [
-          'rgba(255, 159, 64, 0.2)',
-        ],
-        borderColor: [
-
-          'rgb(255, 159, 64)',
-        ],
+        data: gameResults.map(
+          ({ newWords }) => newWords,
+        ),
+        backgroundColor: ['rgba(255, 159, 64, 0.2)'],
+        borderColor: ['rgb(255, 159, 64)'],
         borderWidth: 1,
       },
       {
@@ -99,7 +130,9 @@ const StatisticsInfo = () => {
         borderWidth: 2,
         fill: false,
         capBezierPoints: true,
-        data: [33, 12, 10, 3, 56],
+        data: gameResults.map(
+          ({ accuracy }) => accuracy,
+        ),
       },
     ],
   };
@@ -141,12 +174,10 @@ const StatisticsInfo = () => {
           </S.StatDataContainer>
         </S.SprintStatContainer>
       </Flex>
-      <Flex gap={1} aic jcc>
-        <S.WordsStatContainer>
-          <S.Text>Words statistics:</S.Text>
-          <Chart type="bar" data={data} options={options} />
-        </S.WordsStatContainer>
-      </Flex>
+      <S.WordsStatContainer>
+        <S.Text>Words statistics:</S.Text>
+        {chartData && <Chart type="bar" data={chartData} options={options} />}
+      </S.WordsStatContainer>
     </>
   );
 };

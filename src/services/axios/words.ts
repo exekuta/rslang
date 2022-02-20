@@ -22,6 +22,5 @@ export const getAllDictionaryWords = async ({
 
   const responses = await Promise.all(requests);
   const words: IWord[] = responses.flatMap((response) => response.data);
-
   return words;
 };

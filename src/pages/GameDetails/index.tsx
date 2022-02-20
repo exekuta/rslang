@@ -19,9 +19,17 @@ const GameDetails: React.FC<IGameResult> = ({ rounds, gameName }) => {
       <Game.Container isMain>
         <Page.Title isMargin>Game Details</Page.Title>
         <S.CardsWrapper>
-          {rounds.map((roundData, idx) => (
-            <ResultCard key={String(idx)} gameName={gameName} {...roundData} />
-          ))}
+          {rounds.length > 0 ? (
+            rounds.map((roundData, idx) => (
+              <ResultCard
+                key={String(idx)}
+                gameName={gameName}
+                {...roundData}
+              />
+            ))
+          ) : (
+            <Page.NotFoundMessage>No rounds played</Page.NotFoundMessage>
+          )}
         </S.CardsWrapper>
       </Game.Container>
       <GameFooter>

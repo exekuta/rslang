@@ -21,6 +21,7 @@ import {
   RiGithubFill, RiStopFill,
   RiStopLine,
 } from 'react-icons/ri';
+import { MdOutlineSchool } from 'react-icons/md';
 
 export const Icon = {
   Home: BiHomeCircle,
@@ -43,4 +44,5 @@ export const Icon = {
   Check: RiCheckFill,
   CloseCircle: BiXCircle,
   CheckCircle: BiCheckCircle,
+  GraduationCap: MdOutlineSchool,
 } as const;
