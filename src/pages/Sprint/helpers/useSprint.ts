@@ -53,6 +53,12 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
     roundResults,
     score,
   });
+  const { auth } = useAuth();
+
+  const currentWord = useMemo(
+    () => guessedWords && guessedWords[roundNumber],
+    [guessedWords, roundNumber],
+  );
 
   const endGame = useCallback(() => {
     setGameState(GameState.ENDED);
@@ -82,11 +88,6 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
       clearInterval(intervalId);
     };
   }, [endGame, isInactive, isPlaying, timeLeft]);
-
-  const currentWord = useMemo(
-    () => guessedWords && guessedWords[roundNumber],
-    [guessedWords, roundNumber],
-  );
 
   const addScore = useCallback(
     (isGuessed) => {

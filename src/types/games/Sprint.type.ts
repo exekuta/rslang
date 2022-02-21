@@ -1,8 +1,11 @@
 export interface IGuessedWord {
   word: string;
+  wordId: string;
   translation: string;
   correctTranslation: string;
   isCorrect: boolean;
+  isLearned: boolean;
+  isPlayed: boolean;
 }
 
 export interface ISprintRoundResult {

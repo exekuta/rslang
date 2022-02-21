@@ -60,10 +60,14 @@ export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
 
         const options = shuffle([...incorrectVariants, answer]);
 
+        const { isLearned, isPlayed } = correctWord.userWord?.optional || {};
+
         return {
           audio,
           answer,
           options,
+          isLearned: !!isLearned,
+          isPlayed: !!isPlayed,
         };
       })),
     [correctWords, words],

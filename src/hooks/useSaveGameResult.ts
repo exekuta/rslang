@@ -31,9 +31,18 @@ export const useSaveGameResult = ({
   const correctAnswers = roundResults.filter(
     ({ isGuessed }) => isGuessed,
   ).length;
+
   const incorrectAnswers = roundResults.filter(
     ({ isGuessed }) => !isGuessed,
   ).length;
+
+  const answersAmount = correctAnswers + incorrectAnswers;
+
+  const accuracy = correctAnswers / (answersAmount || 1);
+
+  const learnedWords = roundResults.filter(({ isLearned }) => isLearned).length;
+
+  const newWords = roundResults.filter(({ isPlayed }) => isPlayed).length;
 
   const gameResult = useMemo<IGameResult | null>(
     () => (!shouldSave
@@ -42,16 +51,23 @@ export const useSaveGameResult = ({
         gameName,
         incorrectAnswers,
         correctAnswers,
+        answersAmount,
+        learnedWords,
+        newWords,
         score,
+        accuracy,
         timestamp: Date.now(),
         rounds: roundResults,
       }),
     [
       shouldSave,
-      gameName,
       incorrectAnswers,
       correctAnswers,
+      answersAmount,
+      learnedWords,
+      newWords,
       score,
+      accuracy,
       roundResults,
     ],
   );

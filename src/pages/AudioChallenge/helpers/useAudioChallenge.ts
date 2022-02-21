@@ -104,9 +104,11 @@ export const useAudioChallenge = ({
     updateScore(isGuessed);
 
     setRoundResults((state) => state.concat({
+      answer: selectedOption,
       audio: currentWord.audio,
       correctAnswer: currentWord.answer,
-      answer: selectedOption,
+      isLearned: !currentWord.isLearned && isGuessed,
+      isPlayed: !currentWord.isPlayed,
       isGuessed,
       score: SCORE_PER_WORD,
     }));

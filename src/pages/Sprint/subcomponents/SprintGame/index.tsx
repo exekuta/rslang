@@ -42,7 +42,6 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
     navigate(-1);
   };
 
-
   const handleKeyDown = ({ key }: KeyboardEvent) => {
     if (key === 'ArrowRight') {
       handleFalseGuess();
