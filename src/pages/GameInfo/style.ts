@@ -30,3 +30,12 @@ export const Description = styled.p`
     text-align: center;
   `}
 `;
+
+export const HelperText = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.pallets.text[600].string()};
+    font-weight: 500;
+    font-size: 19px;
+    text-align: center;
+  `}
+`;

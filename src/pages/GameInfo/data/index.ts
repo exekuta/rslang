@@ -5,6 +5,7 @@ interface GameInfo {
   image: string;
   title: string;
   description: string;
+  howtocontrol: string;
 }
 
 type GameInfoData = {
@@ -14,16 +15,16 @@ type GameInfoData = {
 export const data: GameInfoData = {
   audioChallenge: {
     image: giraffeImg,
-    description:
-      'Mollit voluptate nostrud cupidatat ' +
-      'ipsum minim ea minim do veniam deserunt tempor.',
+    description: 'Прослушайте озвученное слово и подберите правильный вариант.',
+    howtocontrol:
+      'Используйте мышь или цифры 1-5 на клавиатуре для выбора варианта ответа',
     title: 'Audio Challenge',
   },
   sprint: {
     image: crocodileImg,
-    description:
-      'Mollit voluptate nostrud cupidatat ' +
-      'ipsum minim ea minim do veniam deserunt tempor.',
+    description: 'Угадайте верный или нет перевод слова предлагает вам игра.',
+    howtocontrol:
+      'Используйте мышь или стрелки влево или вправо на клавиатуре для выбора варианта ответа',
     title: 'Sprint',
   },
 };

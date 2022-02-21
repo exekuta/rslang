@@ -23,3 +23,20 @@ export const AudioButton = styled.button`
     }
   `}
 `;
+
+export const TitleCenter = styled.h2`
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+`;
+
+export const OptionsWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: ${theme.spacing(2)};
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+  `}
+`;
