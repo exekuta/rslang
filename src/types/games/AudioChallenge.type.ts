@@ -1,16 +1,13 @@
 export interface IGuessedWord {
-  word: string;
-  translation: string;
-  correctTranslation: string;
-  isCorrect: boolean;
+  audio: string;
+  answer: string;
+  options: string[];
 }
 
-export interface ISprintRoundResult {
-  word: string;
-  translation: string;
-  isLearned: boolean;
-  isPlayed: boolean;
-  correctTranslation: string;
+export interface IAudioChallengeRoundResult {
+  audio: string;
+  answer: string;
+  correctAnswer: string;
   isGuessed: boolean;
   score: number;
 }
@@ -22,12 +19,14 @@ export enum RoundResult {
 }
 
 export enum GameState {
+  CORRECT = 'correct',
+  INCORRECT = 'incorrect',
   INACTIVE = 'inactive',
   PLAYING = 'playing',
   ENDED = 'ended',
 }
 
-export enum SprintScreen {
+export enum AudioChallengeScreen {
   GAME = 'game',
   END = 'end',
   DETAILS = 'details',

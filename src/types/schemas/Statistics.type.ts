@@ -1,8 +1,8 @@
-import { GameResult } from '../games/common';
+import { IGameResult } from '../games/common';
 
 export interface IStatisticsOptional {
   score?: number;
-  gameResults?: ArrayLike<GameResult>;
+  gameResults?: ArrayLike<IGameResult>;
 }
 
 export interface IStatistics {

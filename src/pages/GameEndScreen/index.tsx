@@ -6,11 +6,11 @@ import { Flex, Game } from 'src/components/core';
 import GameFooter from 'src/components/GameFooter';
 import { routes } from 'src/config';
 import { GameName } from 'src/types/Game.types';
-import { GameResult } from 'src/types/games/common';
+import { IGameResult } from 'src/types/games/common';
 import * as S from './style';
 import DetailsItem from './subcomponents/DetailsItem';
 
-type Props = GameResult & {
+type Props = IGameResult & {
   openDetails: MouseEventHandler;
 };
 

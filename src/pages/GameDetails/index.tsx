@@ -5,10 +5,10 @@ import { Game, Page } from 'src/components/core';
 import GameFooter from 'src/components/GameFooter';
 import ResultCard from 'src/components/ResultCard';
 import { routes } from 'src/config';
-import { GameResult } from 'src/types/games/common';
+import { IGameResult } from 'src/types/games/common';
 import * as S from './style';
 
-const GameDetails: React.FC<GameResult> = ({ rounds }) => {
+const GameDetails: React.FC<IGameResult> = ({ rounds, gameName }) => {
   const navigate = useNavigate();
   const goToGames = () => {
     navigate(routes.games.fullPath);
@@ -19,13 +19,9 @@ const GameDetails: React.FC<GameResult> = ({ rounds }) => {
       <Game.Container isMain>
         <Page.Title isMargin>Game Details</Page.Title>
         <S.CardsWrapper>
-          {rounds.length > 0 ? (
-            rounds.map((roundData) => (
-              <ResultCard key={roundData.word} {...roundData} />
-            ))
-          ) : (
-            <Page.NotFoundMessage>No rounds played</Page.NotFoundMessage>
-          )}
+          {rounds.map((roundData, idx) => (
+            <ResultCard key={String(idx)} gameName={gameName} {...roundData} />
+          ))}
         </S.CardsWrapper>
       </Game.Container>
       <GameFooter>

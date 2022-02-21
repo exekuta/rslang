@@ -2,6 +2,7 @@ import {
   BiArrowToLeft,
   BiArrowToRight,
   BiBookBookmark,
+  BiCheckCircle,
   BiChevronsRight,
   BiHomeCircle,
   BiJoystick,
@@ -9,6 +10,7 @@ import {
   BiLogInCircle,
   BiLogOutCircle,
   BiVolumeFull,
+  BiXCircle,
 } from 'react-icons/bi';
 import {
   RiBookMarkLine,
@@ -40,5 +42,7 @@ export const Icon = {
   Close: RiCloseLine,
   Github: RiGithubFill,
   Check: RiCheckFill,
+  CloseCircle: BiXCircle,
+  CheckCircle: BiCheckCircle,
   GraduationCap: MdOutlineSchool,
 } as const;

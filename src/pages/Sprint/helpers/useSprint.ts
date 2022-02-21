@@ -8,7 +8,7 @@ import {
   MULTIPLIER_UNIT,
   ROUND_TIMEOUT,
 } from 'src/constants/games/sprint';
-import { useAuth } from 'src/hooks';
+import { useAuth, useSaveGameResult } from 'src/hooks';
 import { useGameSound } from 'src/hooks/useGameSound';
 import { saveWordData } from 'src/services/axios/saveWordData';
 import { DictionaryName } from 'src/types/Dictionary.type';
@@ -18,8 +18,8 @@ import {
   RoundResult,
   SprintScreen,
 } from 'src/types/games/Sprint.type';
+import { GameName } from 'src/types/Game.types';
 import { useGuessedWords } from './useGuessedWords';
-import { useSaveGameResult } from './useSaveGameResult';
 
 interface UseSprintParams {
   dictionaryName: DictionaryName;
@@ -49,15 +49,10 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
   const guessedWords = useGuessedWords({ dictionaryName });
   const { playCorrectSound, playIncorrectSound, playWinSound } = useGameSound();
   const { gameResult, saveGameResult } = useSaveGameResult({
+    gameName: GameName.SPRINT,
     roundResults,
     score,
   });
-  const { auth } = useAuth();
-
-  const currentWord = useMemo(
-    () => guessedWords && guessedWords[roundNumber],
-    [guessedWords, roundNumber],
-  );
 
   const endGame = useCallback(() => {
     setGameState(GameState.ENDED);
@@ -87,6 +82,11 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
       clearInterval(intervalId);
     };
   }, [endGame, isInactive, isPlaying, timeLeft]);
+
+  const currentWord = useMemo(
+    () => guessedWords && guessedWords[roundNumber],
+    [guessedWords, roundNumber],
+  );
 
   const addScore = useCallback(
     (isGuessed) => {
