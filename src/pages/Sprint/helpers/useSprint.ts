@@ -8,7 +8,9 @@ import {
   MULTIPLIER_UNIT,
   ROUND_TIMEOUT,
 } from 'src/constants/games/sprint';
+import { useAuth, useSaveGameResult } from 'src/hooks';
 import { useGameSound } from 'src/hooks/useGameSound';
+import { saveWordData } from 'src/services/axios/saveWordData';
 import { DictionaryName } from 'src/types/Dictionary.type';
 import {
   GameState,
@@ -16,7 +18,6 @@ import {
   RoundResult,
   SprintScreen,
 } from 'src/types/games/Sprint.type';
-import { useSaveGameResult } from 'src/hooks';
 import { GameName } from 'src/types/Game.types';
 import { useGuessedWords } from './useGuessedWords';
 
@@ -101,6 +102,8 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
         word: currentWord.word,
         translation: currentWord.translation,
         correctTranslation: currentWord.correctTranslation,
+        isLearned: !currentWord.isLearned && isGuessed,
+        isPlayed: !currentWord.isPlayed,
         isGuessed,
         score: scoreAddition,
       }));
@@ -142,6 +145,12 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
       checkMultiplier(isGuessed);
       addScore(isGuessed);
       playRoundSound(isGuessed);
+      saveWordData({
+        isGuessed,
+        token: auth?.token,
+        userId: auth?.userId,
+        wordId: currentWord.wordId,
+      });
 
       const newRoundResult = isGuessed
         ? RoundResult.CORRECT
@@ -151,6 +160,7 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
     },
     [
       addScore,
+      auth,
       checkMultiplier,
       currentWord,
       isPlaying,
@@ -185,8 +195,8 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
 
   return {
     currentWord,
-    onTrueClick: handleGuess(true),
-    onFalseClick: handleGuess(false),
+    handleTrueGuess: handleGuess(true),
+    handleFalseGuess: handleGuess(false),
     roundResult,
     score,
     multiplier,

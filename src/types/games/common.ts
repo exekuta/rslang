@@ -16,6 +16,7 @@ export interface ISprintGameResult extends IGameResult {
   rounds: ISprintRoundResult[];
 }
 
+
 export interface IAudioChallengeGameResult extends IGameResult {
   gameName: GameName.AUDIO_CHALLENGE;
   rounds: IAudioChallengeRoundResult[];

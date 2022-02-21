@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'src/components/common';
 import { Game } from 'src/components/core';
 import GameProgress from 'src/components/GameProgress';
+import { Icon } from 'src/config';
 import { formatTime } from 'src/helpers';
 import GameDetails from 'src/pages/GameDetails';
 import GameEndScreen from 'src/pages/GameEndScreen';
@@ -24,8 +25,6 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
     currentWord,
     roundResult,
     multiplier,
-    onFalseClick,
-    onTrueClick,
     score,
     timeLeft,
     timeTotal,
@@ -33,6 +32,8 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
     isGameScreen,
     isEndScreen,
     openDetails,
+    handleFalseGuess,
+    handleTrueGuess,
   } = useSprint({
     dictionaryName,
   });
@@ -40,6 +41,22 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
   const goBack = () => {
     navigate(-1);
   };
+
+
+  const handleKeyDown = ({ key }: KeyboardEvent) => {
+    if (key === 'ArrowRight') {
+      handleFalseGuess();
+    } else if (key === 'ArrowLeft') {
+      handleTrueGuess();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
 
   return isGameScreen || !gameResult ? (
     <Game.Page>
@@ -63,11 +80,13 @@ const SprintGame: React.FC<Props> = ({ dictionaryName }) => {
           roundResult={roundResult}
         />
         <S.Buttons>
-          <Button fullWidth onClick={onTrueClick}>
+          <Button fullWidth onClick={handleTrueGuess}>
+            <Icon.ArrowLeft />
             True
           </Button>
-          <Button fullWidth onClick={onFalseClick}>
+          <Button fullWidth onClick={handleFalseGuess}>
             False
+            <Icon.ArrowRight />
           </Button>
         </S.Buttons>
       </S.Container>

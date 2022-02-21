@@ -99,11 +99,3 @@ export const Separator = styled.div`
     max-width: 130px;
   `}
 `;
-
-export const Examples = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    gap: ${theme.spacing(1)};
-  `}
-`;

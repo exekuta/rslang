@@ -51,6 +51,7 @@ const userWordsApi = appApi.injectEndpoints({
 
 export const {
   useGetUserWordQuery,
+  useLazyGetUserWordQuery,
   useGetUserWordsQuery,
   useCreateUserWordMutation,
   useUpdateUserWordMutation,

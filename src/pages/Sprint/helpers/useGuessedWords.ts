@@ -50,16 +50,20 @@ export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
 
         const isCorrect = random.bool();
 
-        const { word, wordTranslate } = correctWord;
+        const { word, wordTranslate, userWord } = correctWord;
+        const { isPlayed, isLearned } = userWord?.optional || {};
 
         const translation = (isCorrect ? correctWord : incorrectWord)
           .wordTranslate;
 
         return {
           word,
+          wordId: correctWord.id,
           translation,
           correctTranslation: wordTranslate,
           isCorrect,
+          isPlayed: !!isPlayed,
+          isLearned: !!isLearned,
         };
       })),
     [correctWords, words],

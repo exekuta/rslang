@@ -8,6 +8,8 @@ export interface IGuessedWord {
 export interface ISprintRoundResult {
   word: string;
   translation: string;
+  isLearned: boolean;
+  isPlayed: boolean;
   correctTranslation: string;
   isGuessed: boolean;
   score: number;
