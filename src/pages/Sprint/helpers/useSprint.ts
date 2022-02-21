@@ -102,6 +102,8 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
         word: currentWord.word,
         translation: currentWord.translation,
         correctTranslation: currentWord.correctTranslation,
+        isLearned: !currentWord.isLearned && isGuessed,
+        isPlayed: !currentWord.isPlayed,
         isGuessed,
         score: scoreAddition,
       }));
@@ -193,8 +195,8 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
 
   return {
     currentWord,
-    onTrueClick: handleGuess(true),
-    onFalseClick: handleGuess(false),
+    handleTrueGuess: handleGuess(true),
+    handleFalseGuess: handleGuess(false),
     roundResult,
     score,
     multiplier,

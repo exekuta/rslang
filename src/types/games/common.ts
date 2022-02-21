@@ -6,6 +6,10 @@ interface IGameResultScheme {
   timestamp: number;
   correctAnswers: number;
   incorrectAnswers: number;
+  accuracy: number;
+  answersAmount: number;
+  learnedWords: number;
+  newWords: number;
   score: number,
   rounds: unknown[];
 }

@@ -53,6 +53,7 @@ export const saveWordData = ({
           guessedInARowTimes: newGuessedInARowTimes,
           guessedTimes: newGuessedTimes,
           notGuessedTimes: newNotGuessedTimes,
+          isPlayed: true,
         },
       };
     },

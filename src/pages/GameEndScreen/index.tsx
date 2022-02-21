@@ -23,7 +23,7 @@ const GameEndScreen: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
 
-  const thumbnailImg = gameName === GameName.SPRINT ? giraffeImg : crocodileImg;
+  const thumbnailImg = gameName === GameName.SPRINT ? crocodileImg : giraffeImg;
 
   const goToGames = () => {
     navigate(routes.games.fullPath, {

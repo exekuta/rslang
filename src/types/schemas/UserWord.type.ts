@@ -3,6 +3,7 @@ export interface IUserWordOptional {
   notGuessedTimes?: number;
   isLearned?: boolean;
   guessedInARowTimes?: number;
+  isPlayed?: boolean;
 }
 
 export interface IUserWord {

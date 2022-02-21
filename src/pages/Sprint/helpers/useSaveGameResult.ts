@@ -29,9 +29,18 @@ export const useSaveGameResult = ({
   const correctAnswers = roundResults.filter(
     ({ isGuessed }) => isGuessed,
   ).length;
+
   const incorrectAnswers = roundResults.filter(
     ({ isGuessed }) => !isGuessed,
   ).length;
+
+  const answersAmount = correctAnswers + incorrectAnswers;
+
+  const accuracy = correctAnswers / (answersAmount || 1);
+
+  const learnedWords = roundResults.filter(({ isLearned }) => isLearned).length;
+
+  const newWords = roundResults.filter(({ isPlayed }) => isPlayed).length;
 
   const gameResult = useMemo<GameResult | null>(
     () => (!shouldSave
@@ -40,11 +49,25 @@ export const useSaveGameResult = ({
         gameName: GameName.SPRINT,
         incorrectAnswers,
         correctAnswers,
+        answersAmount,
+        learnedWords,
+        newWords,
         score,
+        accuracy,
         timestamp: Date.now(),
         rounds: roundResults,
       }),
-    [correctAnswers, incorrectAnswers, shouldSave, roundResults, score],
+    [
+      shouldSave,
+      incorrectAnswers,
+      correctAnswers,
+      answersAmount,
+      learnedWords,
+      newWords,
+      score,
+      accuracy,
+      roundResults,
+    ],
   );
 
   useEffect(() => {
@@ -68,9 +91,7 @@ export const useSaveGameResult = ({
 
     statistics.optional.score = totalScore;
 
-    const gameResults = Array.from(
-      statistics.optional.gameResults || [],
-    );
+    const gameResults = Array.from(statistics.optional.gameResults || []);
     gameResults.push(gameResult);
 
     statistics.optional.gameResults = arrayToArrayLike(gameResults);

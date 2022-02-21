@@ -10,6 +10,12 @@ export const routes: Routes = {
     fullPath: '/games',
     path: 'games',
   },
+  [RouteName.GAMES_FOR_DICTIONARY]: {
+    element: <P.Games />,
+    access: RouteAccess.ANY,
+    fullPath: '/games/:dictionaryName',
+    path: 'games/:dictionaryName',
+  },
   [RouteName.HOME]: {
     element: <P.Home />,
     access: RouteAccess.ANY,
@@ -40,17 +46,35 @@ export const routes: Routes = {
     fullPath: '/statistics',
     path: 'statistics',
   },
+  [RouteName.NOT_FOUND]: {
+    element: <P.NotFound />,
+    access: RouteAccess.ANY,
+    fullPath: '*',
+    path: '*',
+  },
   [RouteName.AUDIO_CHALLENGE_INFO]: {
     element: <P.GameInfo gameName={GameName.AUDIO_CHALLENGE} />,
     access: RouteAccess.ANY,
     fullPath: `/games/${gameRouteNames.audioChallenge}/info`,
     path: 'info',
   },
+  [RouteName.AUDIO_CHALLENGE_INFO_FOR_DICTIONARY]: {
+    element: <P.GameInfo gameName={GameName.AUDIO_CHALLENGE} />,
+    access: RouteAccess.ANY,
+    fullPath: `/games/${gameRouteNames.audioChallenge}/info/:dictionaryName`,
+    path: 'info/:dictionaryName',
+  },
   [RouteName.SPRINT_INFO]: {
     element: <P.GameInfo gameName={GameName.SPRINT} />,
     access: RouteAccess.ANY,
     fullPath: `/games/${gameRouteNames.sprint}/info`,
     path: 'info',
+  },
+  [RouteName.SPRINT_INFO_FOR_DICTIONARY]: {
+    element: <P.GameInfo gameName={GameName.SPRINT} />,
+    access: RouteAccess.ANY,
+    fullPath: `/games/${gameRouteNames.sprint}/info/:dictionaryName`,
+    path: 'info/:dictionaryName',
   },
   [RouteName.AUDIO_CHALLENGE_GAME]: {
     element: <P.AudioChallenge />,
