@@ -59,12 +59,14 @@ const WordCard: React.FC<IWord> = (props) => {
               <IconButton onClick={playAudio}>
                 <Icon.VolumeFull />
               </IconButton>
-              <IconButton
-                onClick={toggleIsLearned}
-                dictionaryName={isLearned ? group : undefined}
-              >
-                <Icon.GraduationCap />
-              </IconButton>
+              {isAuthorized && (
+                <IconButton
+                  onClick={toggleIsLearned}
+                  dictionaryName={isLearned ? group : undefined}
+                >
+                  <Icon.GraduationCap />
+                </IconButton>
+              )}
             </Flex>
           </S.Heading>
           <S.Translation>{wordTranslate}</S.Translation>

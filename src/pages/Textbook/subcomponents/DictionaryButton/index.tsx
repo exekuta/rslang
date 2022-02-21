@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from 'src/config';
-import { GroupName } from 'src/types/Dictionary.type';
+import { GroupName, isDictionaryNameValue } from 'src/types/Dictionary.type';
 import * as S from './style';
 
 interface Props {
@@ -15,7 +15,11 @@ const DictionaryButton: React.FC<Props> = ({
 }) => {
   return (
     <S.Button groupName={groupName} isActive={!!isActive} {...props}>
-      {isActive ? <Icon.Joystick /> : <Icon.Book />}
+      {isActive && isDictionaryNameValue(groupName) ? (
+        <Icon.Joystick />
+      ) : (
+        <Icon.Book />
+      )}
     </S.Button>
   );
 };

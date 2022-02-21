@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 export const StatementTitle = styled.span`
   font-size: 18px;
   font-weight: 600;
-
+`;
 
 export const StatementValue = styled.span`
   font-size: 18px;
@@ -88,7 +88,6 @@ export const Wrapper = styled.div<{
       ${Title} {
         color: ${pallet[900].string()};
       }
-
     `;
   }}
 `;
