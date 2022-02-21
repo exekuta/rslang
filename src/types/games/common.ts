@@ -7,6 +7,8 @@ export interface IGameResult {
   timestamp: number;
   correctAnswers: number;
   incorrectAnswers: number;
+  // learnedWords: number,
+  // newWords: number,
   score: number,
   rounds: RoundResult[];
 }

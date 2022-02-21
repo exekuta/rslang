@@ -45,6 +45,8 @@ export const useSaveGameResult = ({
         score,
         timestamp: Date.now(),
         rounds: roundResults,
+        // learnedWords,
+        // newWords,
       }),
     [
       shouldSave,
