@@ -9,7 +9,7 @@ import { IWordList } from 'src/types/api/WordList.type';
 import { IWord } from 'src/types/schemas';
 
 interface Props {
-  data: IWordList | undefined;
+  data?: IWordList;
   isLoading: boolean;
 }
 
