@@ -14,6 +14,11 @@ export const GlobalStyle = createGlobalStyle`
       font-weight: 500;
     }
 
+    ::selection {
+      background-color: ${theme.pallets.primary[400].string()};
+      color: ${theme.pallets.text[1000].string()}
+    }
+
     #root {
       display: contents;
     }

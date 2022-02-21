@@ -12,12 +12,14 @@ import {
 } from 'react-icons/bi';
 import {
   RiBookMarkLine,
+  RiCheckFill,
   RiCloseLine,
   RiEyeCloseLine,
   RiEyeLine,
-  RiStopFill,
+  RiGithubFill, RiStopFill,
   RiStopLine,
 } from 'react-icons/ri';
+import { MdOutlineSchool } from 'react-icons/md';
 
 export const Icon = {
   Home: BiHomeCircle,
@@ -36,4 +38,7 @@ export const Icon = {
   Eye: RiEyeLine,
   EyeClose: RiEyeCloseLine,
   Close: RiCloseLine,
+  Github: RiGithubFill,
+  Check: RiCheckFill,
+  GraduationCap: MdOutlineSchool,
 } as const;

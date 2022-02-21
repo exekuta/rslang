@@ -5,45 +5,48 @@ import Pagination from 'src/components/Pagination';
 import WordCard from 'src/components/WordCard';
 import { useTypedDispatch, useTypedSelector } from 'src/hooks';
 import { selectTextbook, setPage } from 'src/store/reducers/textbook';
+import { IWordList } from 'src/types/api/WordList.type';
 import { IWord } from 'src/types/schemas';
-import { useGetWordList } from '../../helpers/useWordList';
 
-const WordList = () => {
+interface Props {
+  data: IWordList | undefined;
+  isLoading: boolean;
+}
+
+const WordList: React.FC<Props> = ({ data, isLoading }) => {
   const dispatch = useTypedDispatch();
   const { page } = useTypedSelector(selectTextbook);
-  const { data, isLoading: areWordsLoading } = useGetWordList();
 
-  const setCurrentPage = useCallback((index: number) => {
-    dispatch(setPage(index));
-  }, [dispatch]);
+  const setCurrentPage = useCallback(
+    (index: number) => {
+      dispatch(setPage(index));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
-    const maxPage = (data && data.pagesCount > 0) ? data.pagesCount - 1 : 0;
+    const maxPage = data && data.pagesCount > 0 ? data.pagesCount - 1 : 0;
     if (!data || page <= maxPage) return;
     setCurrentPage(maxPage);
   }, [data, page, setCurrentPage]);
 
-  return (
+  return isLoading ? (
+    <Loader size={5} />
+  ) : data && data.words.length > 0 ? (
     <Flex column gap={2}>
-      {areWordsLoading ? (
-        <Loader size={5} />
-      ) : data && data.words.length > 0 ? (
-        <>
-          {data.words.map((wordInfo: IWord) => (
-            <WordCard key={wordInfo.id} {...wordInfo} />
-          ))}
-          {data.pagesCount > 1 && (
-            <Pagination
-              amount={data.pagesCount}
-              current={page}
-              setCurrent={setCurrentPage}
-            />
-          )}
-        </>
-      ) : (
-        <Page.NotFoundMessage>There are no words here</Page.NotFoundMessage>
+      {data.words.map((wordInfo: IWord) => (
+        <WordCard key={wordInfo.id} {...wordInfo} />
+      ))}
+      {data.pagesCount > 1 && (
+        <Pagination
+          amount={data.pagesCount}
+          current={page}
+          setCurrent={setCurrentPage}
+        />
       )}
     </Flex>
+  ) : (
+    <Page.NotFoundMessage>There are no words here</Page.NotFoundMessage>
   );
 };
 

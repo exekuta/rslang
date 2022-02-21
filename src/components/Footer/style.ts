@@ -1,25 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.section`
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-  position: relative;
-  bottom: 0;
-  grid-column: 2 / 3;
+export const Container = styled.footer`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-top: 2px solid  ${theme.pallets.inactive[100].string()}
+  `}
 `;
 
-export const Flex = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
+export const RsSchoolLink = styled.a`
+  ${({ theme }) => css`
+    color: ${theme.pallets.inactive[400].string()};
+    > svg {
+      height: 30px;
+    }
+  `}
 `;
 
-export const GithubSign = styled.img`
-  height: 30px;
-`;
-
-export const GithubContainer = styled.div`
-  display: flex;
-  gap: 10px;
+export const CopyText = styled.small`
+  ${({ theme }) => css`
+    color: ${theme.pallets.inactive[400].string()};
+    font-size: 16px;
+    cursor: default;
+  `}
 `;

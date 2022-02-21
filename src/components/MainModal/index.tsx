@@ -1,7 +1,5 @@
 import React from 'react';
-import avatarAndrey from 'src/assets/img/avatar-andrey.jpg';
-import avatarArtem from 'src/assets/img/avatar-artem.svg';
-import githubSign from 'src/assets/img/github-sign.svg';
+import { AndreyAvatarImg, ArtemAvatarImg, GitHubLogo } from 'src/assets/img';
 import * as S from './style';
 
 interface Props {
@@ -16,12 +14,12 @@ const MainModal:React.FC<Props> = ({ showModal }) => {
       </S.Header>
       <S.ModalAbout>
         <div>
-          <S.Avatar src={avatarAndrey} />
+          <S.Avatar src={AndreyAvatarImg} />
           <S.Header>
             Андрей
           </S.Header>
           <a href="https://github.com/exekuta/">
-            <S.GithubSign src={githubSign} alt="github-sign" />
+            <S.GithubSign src={GitHubLogo} alt="github-sign" />
           </a>
           <S.List>
             <li>Team-Lead</li>
@@ -31,12 +29,12 @@ const MainModal:React.FC<Props> = ({ showModal }) => {
           </S.List>
         </div>
         <div>
-          <S.Avatar src={avatarArtem} />
+          <S.Avatar src={ArtemAvatarImg} />
           <S.Header>
             Артём
           </S.Header>
           <a href="https://github.com/KUSTIKs/">
-            <S.GithubSign src={githubSign} alt="github-sign" />
+            <S.GithubSign src={GitHubLogo} alt="github-sign" />
           </a>
           <S.List>
             <li>Дизайн приложения</li>

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 type IUseSelectProps<T> = {
   initialState?: T | null;
   activeKey?: string;
-  onActiveClick?: (value?: T) => void
+  onActiveClick?: (value: T) => void
 };
 
 export const useSelect = <T>({

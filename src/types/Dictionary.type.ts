@@ -8,9 +8,11 @@ export enum DictionaryName {
 }
 
 export type DictionaryNameValue = `${DictionaryName}`;
-export const dictionaryNameValues = Object.values(
-  DictionaryName,
-);
+export const isDictionaryNameValue = (
+  dictionaryName: unknown,
+): dictionaryName is DictionaryName => {
+  return Object.values(DictionaryName).includes(Number(dictionaryName));
+};
 
 export enum AdditionalGroupName {
   DIFFICULT_WORDS = 'difficultWords',

@@ -3,28 +3,20 @@ import { useParams } from 'react-router-dom';
 import { Page } from 'src/components/core';
 import {
   DictionaryNameValue,
-  dictionaryNameValues,
+  isDictionaryNameValue,
 } from 'src/types/Dictionary.type';
+import SprintGame from './subcomponents/SprintGame';
 
 const Sprint = () => {
   const { dictionaryName } = useParams<{
     dictionaryName: DictionaryNameValue;
   }>();
 
-  if (!dictionaryNameValues.includes(Number(dictionaryName))) {
-    return (
-      <Page.Page center>
-        <Page.NotFoundMessage>No such dictionary</Page.NotFoundMessage>
-      </Page.Page>
-    );
-  }
-
-  return (
+  return isDictionaryNameValue(dictionaryName) ? (
+    <SprintGame dictionaryName={dictionaryName} />
+  ) : (
     <Page.Page center>
-      <Page.Title>
-        Sprint #
-        {dictionaryName}
-      </Page.Title>
+      <Page.NotFoundMessage>No such dictionary</Page.NotFoundMessage>
     </Page.Page>
   );
 };

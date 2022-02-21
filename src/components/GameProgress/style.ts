@@ -26,6 +26,7 @@ export const ProgressInner = styled.div<{
 }>`
   ${({ theme, progress }) => css`
     position: absolute;
+    transition: width 200ms ease;
     width: ${progress * 100}%;
     inset: 0 auto 0 0;
     border-radius: inherit;
@@ -38,5 +39,6 @@ export const Details = styled.p`
     color: ${theme.pallets.inactive[400].string()};
     font-size: 18px;
     font-weight: 700;
+    min-width: 5ch;
   `}
 `;

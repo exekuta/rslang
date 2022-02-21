@@ -8,27 +8,19 @@ import GameProgress from 'src/components/GameProgress';
 import { Icon } from 'src/config';
 import { useSelect } from 'src/hooks/useSelect';
 import {
-  dictionaryNameValues,
   DictionaryNameValue,
+  isDictionaryNameValue,
 } from 'src/types/Dictionary.type';
 import * as S from './style';
 
-type Option =
-  | 'Katharine Moody'
-  | 'Vernon Bishop'
-  | 'Rose Fields'
-  | 'Bernard Graham'
-  | 'Frank Rodriquez'
-  | 'Helen Cortez';
-
 const AudioChallenge = () => {
   const navigate = useNavigate();
-  const { isSelected, register } = useSelect<Option>({ activeKey: 'isActive' });
+  const { isSelected, register } = useSelect<string>({ activeKey: 'isActive' });
   const { dictionaryName } = useParams<{
     dictionaryName: DictionaryNameValue;
   }>();
 
-  if (!dictionaryNameValues.includes(Number(dictionaryName))) {
+  if (!isDictionaryNameValue(dictionaryName)) {
     return (
       <Page.Page center>
         <Page.NotFoundMessage>No such dictionary</Page.NotFoundMessage>
@@ -93,7 +85,9 @@ const AudioChallenge = () => {
         <Button variant="outlined" size="large">
           Back
         </Button>
-        <Button size="large" isDisabled={!isSelected}>Next</Button>
+        <Button size="large" isDisabled={!isSelected}>
+          Next
+        </Button>
       </GameFooter>
     </Game.Page>
   );
