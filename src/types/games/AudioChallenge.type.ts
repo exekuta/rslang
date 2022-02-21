@@ -8,6 +8,8 @@ export interface IAudioChallengeRoundResult {
   audio: string;
   answer: string;
   correctAnswer: string;
+  isLearned: boolean;
+  isPlayed: boolean;
   isGuessed: boolean;
   score: number;
 }

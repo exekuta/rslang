@@ -3,11 +3,15 @@ export interface IGuessedWord {
   translation: string;
   correctTranslation: string;
   isCorrect: boolean;
+  isLearned: boolean;
+  isPlayed: boolean;
 }
 
 export interface ISprintRoundResult {
   word: string;
   translation: string;
+  isLearned: boolean;
+  isPlayed: boolean;
   correctTranslation: string;
   isGuessed: boolean;
   score: number;
