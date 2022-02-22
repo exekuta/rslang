@@ -7,3 +7,4 @@ export { objectToUrlParams } from './objectToUrlParams';
 export * as random from './random';
 export { range } from './range';
 export { arrayToArrayLike } from './arrayToArrayLike';
+export { average } from './average';

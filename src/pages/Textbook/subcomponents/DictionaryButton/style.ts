@@ -1,6 +1,10 @@
 /* eslint-disable indent */
 import Color from 'color';
-import { AdditionalGroupName, GroupName } from 'src/types/Dictionary.type';
+import {
+  AdditionalGroupName,
+  GroupName,
+  isDictionaryNameValue,
+} from 'src/types/Dictionary.type';
 import { IMDPallet } from 'src/types/Schema.type';
 import styled, { css } from 'styled-components';
 
@@ -75,7 +79,6 @@ export const Button = styled.button<{
           `)}
       ${isActive &&
       css`
-        color: white;
         ${pallet
           ? css`
               background-color: ${pallet[500].string()};
@@ -85,7 +88,11 @@ export const Button = styled.button<{
               background-size: cover;
               color: white;
             `}
-        border-radius: 15px;
+        ${isDictionaryNameValue(groupName) &&
+        css`
+          border-radius: 15px;
+        `}
+        color: white;
         box-shadow: none;
       `}
     `;

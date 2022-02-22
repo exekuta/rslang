@@ -21,7 +21,9 @@ const GameInfo: React.FC<Props> = ({ gameName }) => {
   const { dictionaryName } = useParams();
   const isDictionaryName = isDictionaryNameValue(dictionaryName);
 
-  const { description, image, title } = data[gameName];
+  const {
+    description, image, title, howToControl: howtocontrol,
+  } = data[gameName];
   const {
     register,
     selectedElement: selectedDictionary,
@@ -54,6 +56,7 @@ const GameInfo: React.FC<Props> = ({ gameName }) => {
           <S.InfoPart>
             <S.Title>{title}</S.Title>
             <S.Description>{description}</S.Description>
+            <S.HelperText>{howtocontrol}</S.HelperText>
           </S.InfoPart>
           {!isDictionaryName && (
             <Flex gap={2} fwrap jcc>

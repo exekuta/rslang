@@ -1,12 +1,10 @@
 import styled, { css } from 'styled-components';
 
 export const Image = styled.img`
-  ${({ theme }) => css`
-    display: block;
-    object-fit: contain;
-    width: min(100%, 220px);
-    aspect-ratio: 1;
-  `}
+  display: block;
+  object-fit: contain;
+  width: min(100%, 220px);
+  aspect-ratio: 1;
 `;
 
 export const InfoPart = styled.div`
@@ -27,6 +25,15 @@ export const Description = styled.p`
     color: ${theme.pallets.text[500].string()};
     font-weight: 500;
     font-size: 20px;
+    text-align: center;
+  `}
+`;
+
+export const HelperText = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.pallets.text[600].string()};
+    font-weight: 500;
+    font-size: 19px;
     text-align: center;
   `}
 `;

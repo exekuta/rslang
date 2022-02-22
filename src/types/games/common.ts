@@ -1,7 +1,8 @@
 import { GameName } from '../Game.types';
+import { IAudioChallengeRoundResult } from './AudioChallenge.type';
 import { ISprintRoundResult } from './Sprint.type';
 
-interface IGameResultScheme {
+export interface IGameResult {
   gameName: GameName;
   timestamp: number;
   correctAnswers: number;
@@ -11,13 +12,18 @@ interface IGameResultScheme {
   learnedWords: number;
   newWords: number;
   score: number,
-  rounds: unknown[];
+  rounds: RoundResult[];
 }
 
-export interface ISprintGameResult extends IGameResultScheme {
+export interface ISprintGameResult extends IGameResult {
   gameName: GameName.SPRINT;
   rounds: ISprintRoundResult[];
 }
 
-export type GameResult = ISprintGameResult;
-export type RoundResult = ISprintRoundResult;
+export interface IAudioChallengeGameResult extends IGameResult {
+  gameName: GameName.AUDIO_CHALLENGE;
+  rounds: IAudioChallengeRoundResult[];
+}
+
+export type GameResult = ISprintGameResult | IAudioChallengeGameResult;
+export type RoundResult = ISprintRoundResult | IAudioChallengeRoundResult;

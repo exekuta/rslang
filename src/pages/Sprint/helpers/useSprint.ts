@@ -8,10 +8,11 @@ import {
   MULTIPLIER_UNIT,
   ROUND_TIMEOUT,
 } from 'src/constants/games/sprint';
-import { useAuth } from 'src/hooks';
+import { useAuth, useSaveGameResult } from 'src/hooks';
 import { useGameSound } from 'src/hooks/useGameSound';
 import { saveWordData } from 'src/services/axios/saveWordData';
 import { DictionaryName } from 'src/types/Dictionary.type';
+import { GameName } from 'src/types/Game.types';
 import {
   GameState,
   ISprintRoundResult,
@@ -19,7 +20,6 @@ import {
   SprintScreen,
 } from 'src/types/games/Sprint.type';
 import { useGuessedWords } from './useGuessedWords';
-import { useSaveGameResult } from './useSaveGameResult';
 
 interface UseSprintParams {
   dictionaryName: DictionaryName;
@@ -49,6 +49,7 @@ export const useSprint = ({ dictionaryName }: UseSprintParams) => {
   const guessedWords = useGuessedWords({ dictionaryName });
   const { playCorrectSound, playIncorrectSound, playWinSound } = useGameSound();
   const { gameResult, saveGameResult } = useSaveGameResult({
+    gameName: GameName.SPRINT,
     roundResults,
     score,
   });

@@ -5,7 +5,10 @@ interface Props {
   kbd: number;
   title: string;
   selectThis?: () => void;
+  isCorrect: boolean;
+  isIncorrect: boolean;
   isActive?: boolean;
+  isHoverable: boolean;
 }
 
 const GameOption: React.FC<Props> = ({
@@ -13,6 +16,9 @@ const GameOption: React.FC<Props> = ({
   title,
   isActive,
   selectThis,
+  isCorrect,
+  isIncorrect,
+  isHoverable,
   ...props
 }) => {
   const handleKeydown = useCallback(
@@ -31,8 +37,14 @@ const GameOption: React.FC<Props> = ({
   }, [handleKeydown]);
 
   return (
-    <S.Button isActive={!!isActive} {...props}>
-      <S.Kbd isActive={!!isActive}>{kbd}</S.Kbd>
+    <S.Button
+      isCorrect={isCorrect}
+      isIncorrect={isIncorrect}
+      isHoverable={isHoverable}
+      isActive={!!isActive}
+      {...props}
+    >
+      <S.Kbd>{kbd}</S.Kbd>
       <S.Title>{title}</S.Title>
     </S.Button>
   );
