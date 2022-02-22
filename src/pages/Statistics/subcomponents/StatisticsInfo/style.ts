@@ -8,8 +8,8 @@ export const AudioStatContainer = styled.div`
   width: 50vw;
   height: 22vh;
   padding: 10px;
-  &::before{
-    content: "";
+  &::before {
+    content: '';
     background-image: url(${giraffeImg});
     background-repeat: no-repeat;
     background-position: right top 20px;
@@ -27,8 +27,8 @@ export const SprintStatContainer = styled.div`
   width: 50vw;
   height: 22vh;
   padding: 10px;
-  &::before{
-    content: "";
+  &::before {
+    content: '';
     background-image: url(${crocodileImg});
     background-repeat: no-repeat;
     background-position: right top 20px;
@@ -82,11 +82,9 @@ export const StatData = styled.div`
 `;
 
 export const StatDescription = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding: 10px;
-    gap: 10px;
-  `}
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+  gap: 10px;
 `;

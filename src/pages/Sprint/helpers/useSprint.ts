@@ -12,13 +12,13 @@ import { useAuth, useSaveGameResult } from 'src/hooks';
 import { useGameSound } from 'src/hooks/useGameSound';
 import { saveWordData } from 'src/services/axios/saveWordData';
 import { DictionaryName } from 'src/types/Dictionary.type';
+import { GameName } from 'src/types/Game.types';
 import {
   GameState,
   ISprintRoundResult,
   RoundResult,
   SprintScreen,
 } from 'src/types/games/Sprint.type';
-import { GameName } from 'src/types/Game.types';
 import { useGuessedWords } from './useGuessedWords';
 
 interface UseSprintParams {

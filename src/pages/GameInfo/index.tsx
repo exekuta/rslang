@@ -22,7 +22,7 @@ const GameInfo: React.FC<Props> = ({ gameName }) => {
   const isDictionaryName = isDictionaryNameValue(dictionaryName);
 
   const {
-    description, image, title, howtocontrol,
+    description, image, title, howToControl: howtocontrol,
   } = data[gameName];
   const {
     register,
