@@ -4,38 +4,6 @@ import { useAuth } from 'src/hooks';
 import { useLazyGetStatisticsQuery } from 'src/services/api/statistics.api';
 import { ChartDataItem, GameStats } from 'src/types/Statistics.type';
 
-export const options = {
-  responsive: true,
-  scales: {
-    x: {
-      ticks: {
-        font: {
-          family: 'Gilroy',
-          size: 14,
-        },
-      },
-    },
-    y: {
-      ticks: {
-        font: {
-          family: 'Gilroy',
-          size: 14,
-        },
-      },
-    },
-  },
-  plugins: {
-    legend: {
-      labels: {
-        font: {
-          family: 'Gilroy',
-          size: 16,
-        },
-      },
-    },
-  },
-};
-
 const defaultGameStatsWordData = {
   accuracy: null,
   inARow: 0,
@@ -117,47 +85,8 @@ export const useStatistics = () => {
     [gameResults],
   );
 
-  const labels = rawCharData.map(({ date }) => date);
-
-  const chartData = useMemo(
-    () => ({
-      labels,
-      datasets: !data
-        ? []
-        : [
-          {
-            type: 'bar' as const,
-            label: 'Words learned',
-            data: rawCharData.map(({ learnedWords }) => learnedWords),
-            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-            borderColor: ['rgb(255, 99, 132)'],
-            borderWidth: 1,
-          },
-          {
-            type: 'bar' as const,
-            label: 'New words',
-            data: rawCharData.map(({ newWords }) => newWords),
-            backgroundColor: ['rgba(255, 159, 64, 0.2)'],
-            borderColor: ['rgb(255, 159, 64)'],
-            borderWidth: 1,
-          },
-          {
-            type: 'bar' as const,
-            label: 'Accuracy in %',
-            backgroundColor: ['rgba(255, 159, 64, 0.2)'],
-            borderColor: 'rgb(75, 192, 192)',
-            borderWidth: 2,
-            // fill: false,
-            // capBezierPoints: true,
-            data: rawCharData.map(({ accuracy }) => accuracy),
-          },
-        ],
-    }),
-    [data, labels, rawCharData],
-  );
-
   return {
-    chartData,
+    rawCharData,
     gameStats,
   };
 };
