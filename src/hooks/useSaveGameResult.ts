@@ -9,7 +9,6 @@ import {
 } from 'src/services/api/statistics.api';
 import { GameName } from 'src/types/Game.types';
 import { IGameResult, RoundResult } from 'src/types/games/common';
-import { ISprintRoundResult } from 'src/types/games/Sprint.type';
 
 interface UseSaveGameResultParams {
   roundResults: RoundResult[];
@@ -61,6 +60,7 @@ export const useSaveGameResult = ({
       }),
     [
       shouldSave,
+      gameName,
       incorrectAnswers,
       correctAnswers,
       answersAmount,

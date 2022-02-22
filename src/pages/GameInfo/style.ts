@@ -1,12 +1,10 @@
 import styled, { css } from 'styled-components';
 
 export const Image = styled.img`
-  ${({ theme }) => css`
-    display: block;
-    object-fit: contain;
-    width: min(100%, 220px);
-    aspect-ratio: 1;
-  `}
+  display: block;
+  object-fit: contain;
+  width: min(100%, 220px);
+  aspect-ratio: 1;
 `;
 
 export const InfoPart = styled.div`

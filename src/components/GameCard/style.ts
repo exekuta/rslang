@@ -32,20 +32,16 @@ export const Title = styled.p`
 `;
 
 export const ImageWrapper = styled.div`
-  ${({ theme }) => css`
-    width: 220px;
-    padding-bottom: 100%;
-    position: relative;
-  `}
+  width: 220px;
+  padding-bottom: 100%;
+  position: relative;
 `;
 
 export const Image = styled.img`
-  ${({ theme }) => css`
-    display: block;
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  `}
+  display: block;
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 `;

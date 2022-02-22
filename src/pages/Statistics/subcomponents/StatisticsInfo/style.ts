@@ -99,11 +99,9 @@ export const StatData = styled.div`
 `;
 
 export const StatDescription = styled.div`
-  ${({ theme }) => css`
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding: 10px;
-    gap: 10px;
-  `}
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 10px;
+  gap: 10px;
 `;

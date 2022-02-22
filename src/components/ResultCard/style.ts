@@ -31,6 +31,7 @@ export const AudioButton = styled.button`
   color: white;
   transition: background-color 200ms ease;
   outline: none;
+  flex-shrink: 0;
 `;
 
 export const Title = styled.p`
