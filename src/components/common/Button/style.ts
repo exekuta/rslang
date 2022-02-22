@@ -49,7 +49,7 @@ export const Button = styled.button<{
       border-radius: 10px;
       transition: background-color 100ms ease;
       outline: none;
-      width: ${fullWidth ? '100%' : 'max-content'};
+      width: max-content;
       position: relative;
       display: flex;
       justify-content: center;
@@ -64,6 +64,14 @@ export const Button = styled.button<{
       ${maxWidth &&
       css`
         max-width: ${maxWidth}px;
+      `}
+
+      ${fullWidth && css`
+        width: 100%;
+        @media (max-width: 600px) {
+          max-width: unset;
+        }
+        flex-grow: 1;
       `}
 
       ${size === 'large'

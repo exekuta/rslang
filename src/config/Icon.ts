@@ -9,6 +9,7 @@ import {
   BiLineChart,
   BiLogInCircle,
   BiLogOutCircle,
+  BiMenu,
   BiVolumeFull,
   BiXCircle,
 } from 'react-icons/bi';
@@ -45,4 +46,5 @@ export const Icon = {
   CloseCircle: BiXCircle,
   CheckCircle: BiCheckCircle,
   GraduationCap: MdOutlineSchool,
+  Menu: BiMenu,
 } as const;

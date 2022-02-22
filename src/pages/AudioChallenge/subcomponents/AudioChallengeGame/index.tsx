@@ -104,20 +104,18 @@ const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
         ) : (
           <Button
             variant="outlined"
-            size="large"
             fullWidth
-            maxWidth={200}
+            maxWidth={250}
             onClick={handleSkip}
           >
             Skip
           </Button>
         )}
         <Button
-          size="large"
           isDisabled={!isSelected && isPlaying}
           onClick={handleClick}
           fullWidth
-          maxWidth={200}
+          maxWidth={250}
           schema={isCorrect ? 'success' : isIncorrect ? 'error' : 'primary'}
         >
           {isPlaying ? 'Submit' : 'Next'}
