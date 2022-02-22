@@ -5,7 +5,7 @@ export const ModalContainer = styled.div<{
 }>`
   background-color: white;
   position: fixed;
-  bottom: 25vh;
+  top: 20vh;
   left: ${({ showSlide }) => (showSlide ? '150vw' : '35vw')};
   background-color: #fff;
   width: 50%;
@@ -16,7 +16,21 @@ export const ModalContainer = styled.div<{
   z-index: 10;
   text-align: center;
   @media (max-width: 1400px) {
-    bottom: 24vh;
+    top: 30vh;
+    left: ${({ showSlide }) => (showSlide ? '150vw' : '40vw')};
+  }
+  @media (max-width: 1000px) {
+    top: 20vh;
+  }
+  @media (max-width: 800px) {
+    left: ${({ showSlide }) => (showSlide ? '150vw' : '10vw')};
+    width: 70%;
+  }
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+  @media (max-width: 500px) {
+    top: 20vh;
   }
 `;
 
@@ -24,6 +38,12 @@ export const ModalAbout = styled.div`
   display: flex;
   justify-content: center;
   gap: 50px;
+  @media (max-width: 1000px) {
+    flex-direction: column; 
+  }
+  @media (max-width: 500px) {
+    gap: 20px; 
+  }
 `;
 
 export const Avatar = styled.img`

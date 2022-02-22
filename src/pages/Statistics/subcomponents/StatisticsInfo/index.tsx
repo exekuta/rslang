@@ -36,7 +36,7 @@ const StatisticsInfo = () => {
     <>
       <S.Text>Games statistics:</S.Text>
       <Flex gap={3} column>
-        <Flex gap={3} aic jcc>
+        <S.StatContainer>
           <S.AudioStatContainer>
             <S.Text>Audio challenge:</S.Text>
             <S.Date>Today</S.Date>
@@ -79,7 +79,7 @@ const StatisticsInfo = () => {
               </S.StatDescription>
             </S.StatDataContainer>
           </S.SprintStatContainer>
-        </Flex>
+        </S.StatContainer>
         <S.WordsStatContainer>
           <S.Text>Words statistics:</S.Text>
           <Chart type="bar" data={chartData} options={options} />
