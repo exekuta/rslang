@@ -6,7 +6,7 @@ export const Footer = styled.footer<{
   isIncorrect?: boolean;
 }>`
   ${({ theme, isCorrect, isIncorrect }) => {
-    const pallete = isCorrect
+    const pallet = isCorrect
       ? theme.pallets.success
       : isIncorrect
       ? theme.pallets.error
@@ -19,14 +19,21 @@ export const Footer = styled.footer<{
       margin-top: auto;
       ${(isCorrect || isIncorrect) &&
       css`
-        background-color: ${pallete[100].string()};
-    `};
+        background-color: ${pallet[100].string()};
+      `};
     `;
   }}
 `;
 
 export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+  ${({ theme }) => css`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: ${theme.spacing(3)};
+    justify-content: space-between;
+    @media (max-width: 600px) {
+    justify-content: center;
+    }
+  `}
 `;
