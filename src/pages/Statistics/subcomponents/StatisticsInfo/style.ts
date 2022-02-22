@@ -7,7 +7,6 @@ export const AudioStatContainer = styled.div`
   border-radius: 20px;
   width: 50vw;
   height: 22vh;
-  margin: 10px;
   padding: 10px;
   &::before{
     content: "";
@@ -16,10 +15,7 @@ export const AudioStatContainer = styled.div`
     background-position: right top 20px;
     background-size: 40%;
     position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    inset: 0;
     opacity: 0.4;
   }
 `;
@@ -30,7 +26,6 @@ export const SprintStatContainer = styled.div`
   border-radius: 20px;
   width: 50vw;
   height: 22vh;
-  margin: 10px;
   padding: 10px;
   &::before{
     content: "";
@@ -39,10 +34,7 @@ export const SprintStatContainer = styled.div`
     background-position: right top 20px;
     background-size: 40%;
     position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+    inset: 0;
     opacity: 0.4;
   }
 `;
@@ -50,9 +42,6 @@ export const SprintStatContainer = styled.div`
 export const WordsStatContainer = styled.div`
   background-color: white;
   border-radius: 20px;
-  width: 50vw;
-  height: 53vh; 
-  margin: 10px;
   padding: 10px;
 `;
 
@@ -87,7 +76,6 @@ export const StatData = styled.div`
     background-color: ${theme.pallets.inactive[100].string()};
     border-radius: 20px;
     width: 20%;
-    margin: 10px;
     padding: 10px;
     gap: 10px;
   `}
@@ -98,7 +86,6 @@ export const StatDescription = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: 10px;
     padding: 10px;
     gap: 10px;
   `}
