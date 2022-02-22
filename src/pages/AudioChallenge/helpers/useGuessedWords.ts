@@ -8,10 +8,7 @@ import { IGuessedWord } from 'src/types/games/AudioChallenge.type';
 import { getStaticFilePath } from 'src/helpers/getStaticFilePath';
 import { getAllDictionaryWords } from 'src/services/axios/words';
 import { IWord } from 'src/types/schemas';
-
-const shuffle = <T>(array: T[]): T[] => {
-  return array.sort(() => Math.random() - 0.5);
-};
+import { shuffle } from 'src/helpers/shuffle';
 
 interface UseGuessedWordsParams {
   dictionaryName: DictionaryName;
@@ -52,11 +49,11 @@ export const useGuessedWords = ({ dictionaryName }: UseGuessedWordsParams) => {
         const incorrectVariants = random.sample({
           arr: potentiallyIncorrectWords,
           amount: 4,
-        }).map(({ word }) => word);
+        }).map(({ wordTranslate }) => wordTranslate);
 
         const audio = getStaticFilePath(correctWord.audio);
 
-        const answer = correctWord.word;
+        const answer = correctWord.wordTranslate;
 
         const options = shuffle([...incorrectVariants, answer]);
 
