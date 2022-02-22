@@ -9,5 +9,8 @@ export const Layout = styled.div`
     background-position: right;
     height: 100%;
     width: 100%;
+    @media (max-width: 800px) {
+      height: 88vh;
+    }
   `};
 `;

@@ -1,6 +1,17 @@
 import { crocodileImg, giraffeImg } from 'src/assets/img';
 import styled, { css } from 'styled-components';
 
+export const StatContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
 export const AudioStatContainer = styled.div`
   position: relative;
   background-color: white;
@@ -8,8 +19,11 @@ export const AudioStatContainer = styled.div`
   width: 50vw;
   height: 22vh;
   padding: 10px;
-  &::before {
-    content: '';
+  @media (max-width: 600px) {
+    width: 90vw;
+  }
+  &::before{
+    content: "";
     background-image: url(${giraffeImg});
     background-repeat: no-repeat;
     background-position: right top 20px;
@@ -27,8 +41,11 @@ export const SprintStatContainer = styled.div`
   width: 50vw;
   height: 22vh;
   padding: 10px;
-  &::before {
-    content: '';
+  @media (max-width: 600px) {
+    width: 90vw;
+  }
+  &::before{
+    content: "";
     background-image: url(${crocodileImg});
     background-repeat: no-repeat;
     background-position: right top 20px;
