@@ -24,3 +24,5 @@ yarn-error.log*
 
 .vscode
 node_modules
+cypress/videos
+cypress/screenshots

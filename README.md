@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 <div align="center">
-  <a href="https://lslang-demo.netlify.app/">
+  <a href="https://rslang-exekuta.netlify.app/">
     <img src="./public/logo192.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -11,7 +11,7 @@
     An awesome english language learning app
     <br/>
     <br/>
-    <a href="https://lslang-demo.netlify.app/">View Demo</a>
+    <a href="https://rslang-exekuta.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/exekuta/rslang/issues">Report Bug</a>
     ·
