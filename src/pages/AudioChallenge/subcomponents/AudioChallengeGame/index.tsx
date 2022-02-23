@@ -1,0 +1,132 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'src/components/common';
+import { Game, Flex } from 'src/components/core';
+import GameFooter from 'src/components/GameFooter';
+import GameOption from 'src/components/GameOption';
+import GameProgress from 'src/components/GameProgress';
+import { Icon } from 'src/config';
+import { useSelect } from 'src/hooks/useSelect';
+import GameDetails from 'src/pages/GameDetails';
+import GameEndScreen from 'src/pages/GameEndScreen';
+import { DictionaryName } from 'src/types/Dictionary.type';
+import { useAudioChallenge } from '../../helpers/useAudioChallenge';
+import ResultMessage from '../ResultMessage';
+import * as S from './style';
+
+interface Props {
+  dictionaryName: DictionaryName;
+}
+
+const AudioChallengeGame: React.FC<Props> = ({ dictionaryName }) => {
+  const {
+    isSelected,
+    register,
+    selectedElement: selectedOption,
+    selectElement,
+  } = useSelect<string>({ activeKey: 'isActive' });
+  const navigate = useNavigate();
+
+  const {
+    currentWord,
+    handleAnswer,
+    roundNumber,
+    roundsAmount,
+    handleNext,
+    isCorrect,
+    isIncorrect,
+    isPlaying,
+    handleSkip,
+    handlePlayAudio,
+    gameResult,
+    isEndScreen,
+    isGameScreen,
+    openDetails,
+    correctAnswer,
+    lastSelectedWord,
+    isActive,
+  } = useAudioChallenge({ dictionaryName });
+
+  const handleClick = () => {
+    if (isPlaying && selectedOption) {
+      handleAnswer(selectedOption);
+      selectElement(null);
+    } else {
+      handleNext();
+    }
+  };
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  return isGameScreen || !gameResult ? (
+    <Game.Page>
+      <Game.Container>
+        <GameProgress
+          progress={roundNumber / roundsAmount}
+          onClose={goBack}
+          details={`${roundNumber}/${roundsAmount}`}
+        />
+      </Game.Container>
+      <Game.Container isMain center>
+        <Flex column gap={4} pic>
+          <S.AudioButton onClick={handlePlayAudio}>
+            <Icon.VolumeFull />
+          </S.AudioButton>
+          <S.OptionsWrapper>
+            {currentWord &&
+              currentWord.options.map((word, idx) => {
+                const isCorrectWord =
+                  isActive && !isPlaying && word === correctAnswer;
+                const isIncorrectWord =
+                  isIncorrect && word === lastSelectedWord;
+                const registerWord = isPlaying ? register(word) : {};
+
+                return (
+                  <GameOption
+                    key={String(idx)}
+                    kbd={idx + 1}
+                    title={word}
+                    isHoverable={isPlaying}
+                    isCorrect={isCorrectWord}
+                    isIncorrect={isIncorrectWord}
+                    {...registerWord}
+                  />
+                );
+              })}
+          </S.OptionsWrapper>
+        </Flex>
+      </Game.Container>
+      <GameFooter isCorrect={isCorrect} isIncorrect={isIncorrect}>
+        {isCorrect || isIncorrect ? (
+          <ResultMessage isCorrect={isCorrect} />
+        ) : (
+          <Button
+            variant="outlined"
+            fullWidth
+            maxWidth={250}
+            onClick={handleSkip}
+          >
+            Skip
+          </Button>
+        )}
+        <Button
+          isDisabled={!isSelected && isPlaying}
+          onClick={handleClick}
+          fullWidth
+          maxWidth={250}
+          schema={isCorrect ? 'success' : isIncorrect ? 'error' : 'primary'}
+        >
+          {isPlaying ? 'Submit' : 'Next'}
+        </Button>
+      </GameFooter>
+    </Game.Page>
+  ) : isEndScreen ? (
+    <GameEndScreen openDetails={openDetails} {...gameResult} />
+  ) : (
+    <GameDetails {...gameResult} />
+  );
+};
+
+export default AudioChallengeGame;

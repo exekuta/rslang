@@ -1,0 +1,12 @@
+export { default as AudioChallenge } from './AudioChallenge';
+export { default as GameDetails } from './GameDetails';
+export { default as GameEndScreen } from './GameEndScreen';
+export { default as GameInfo } from './GameInfo';
+export { default as Games } from './Games';
+export { default as Home } from './Home';
+export { default as LogIn } from './LogIn';
+export { default as NotFound } from './NotFound';
+export { default as Register } from './Register';
+export { default as Sprint } from './Sprint';
+export { default as Statistics } from './Statistics';
+export { default as Textbook } from './Textbook';

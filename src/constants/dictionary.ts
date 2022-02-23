@@ -1,0 +1,3 @@
+export const WORDS_PER_PAGE = 20;
+export const PAGES_COUNT = 30;
+export const WORDS_PER_DICTIONARY = WORDS_PER_PAGE * PAGES_COUNT;
